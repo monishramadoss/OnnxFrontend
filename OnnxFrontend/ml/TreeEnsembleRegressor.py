@@ -1,4 +1,6 @@
 import numpy as np
+from __future__ import absolute_import
+from __future__ import division
 
 class TreeEnsembleRegressor_1:
 
@@ -19,8 +21,9 @@ class TreeEnsembleRegressor_1:
 	target_nodeids = m_list()
 	target_treeids = m_list()
 	target_weights = m_list()
-	def __init__(self, _name: str, aggregate_function: str, base_values: list, n_targets: int, nodes_falsenodeids: list, nodes_featureids: list, nodes_hitrates: list, nodes_missing_value_tracks_true: list, nodes_modes: list, nodes_nodeids: list, nodes_treeids: list, nodes_truenodeids: list, nodes_values: list, post_transform: str, target_ids: list, target_nodeids: list, target_treeids: list, target_weights: list):
+	def __init__(self, _name: str, _tensor: dict, aggregate_function: str, base_values: list, n_targets: int, nodes_falsenodeids: list, nodes_featureids: list, nodes_hitrates: list, nodes_missing_value_tracks_true: list, nodes_modes: list, nodes_nodeids: list, nodes_treeids: list, nodes_truenodeids: list, nodes_values: list, post_transform: str, target_ids: list, target_nodeids: list, target_treeids: list, target_weights: list):
 		self.name = _name
+		self.tensor = _tensor
 		self.m_aggregate_function = aggregate_function
 		self.m_base_values = base_values
 		self.m_n_targets = n_targets
@@ -40,4 +43,5 @@ class TreeEnsembleRegressor_1:
 		self.m_target_weights = target_weights
 
 	def __call__(self, X: str):
-		 return Y
+		input = (self.tensor[X])
+		return self.tensor[Y]

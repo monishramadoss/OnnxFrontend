@@ -1,4 +1,6 @@
 import numpy as np
+from __future__ import absolute_import
+from __future__ import division
 
 class TreeEnsembleClassifier_1:
 
@@ -19,8 +21,9 @@ class TreeEnsembleClassifier_1:
 	nodes_truenodeids = m_list()
 	nodes_values = m_list()
 	post_transform = m_str()
-	def __init__(self, _name: str, base_values: list, class_ids: list, class_nodeids: list, class_treeids: list, class_weights: list, classlabels_int64s: list, classlabels_strings: list, nodes_falsenodeids: list, nodes_featureids: list, nodes_hitrates: list, nodes_missing_value_tracks_true: list, nodes_modes: list, nodes_nodeids: list, nodes_treeids: list, nodes_truenodeids: list, nodes_values: list, post_transform: str):
+	def __init__(self, _name: str, _tensor: dict, base_values: list, class_ids: list, class_nodeids: list, class_treeids: list, class_weights: list, classlabels_int64s: list, classlabels_strings: list, nodes_falsenodeids: list, nodes_featureids: list, nodes_hitrates: list, nodes_missing_value_tracks_true: list, nodes_modes: list, nodes_nodeids: list, nodes_treeids: list, nodes_truenodeids: list, nodes_values: list, post_transform: str):
 		self.name = _name
+		self.tensor = _tensor
 		self.m_base_values = base_values
 		self.m_class_ids = class_ids
 		self.m_class_nodeids = class_nodeids
@@ -40,4 +43,5 @@ class TreeEnsembleClassifier_1:
 		self.m_post_transform = post_transform
 
 	def __call__(self, X: str):
-		 return Y, Z
+		input = (self.tensor[X])
+		return self.tensor[Y], self.tensor[Z]

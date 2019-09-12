@@ -1,4 +1,6 @@
 import numpy as np
+from __future__ import absolute_import
+from __future__ import division
 
 class SVMRegressor_1:
 
@@ -10,8 +12,9 @@ class SVMRegressor_1:
 	post_transform = m_str()
 	rho = m_list()
 	support_vectors = m_list()
-	def __init__(self, _name: str, coefficients: list, kernel_params: list, kernel_type: str, n_supports: int, one_class: int, post_transform: str, rho: list, support_vectors: list):
+	def __init__(self, _name: str, _tensor: dict, coefficients: list, kernel_params: list, kernel_type: str, n_supports: int, one_class: int, post_transform: str, rho: list, support_vectors: list):
 		self.name = _name
+		self.tensor = _tensor
 		self.m_coefficients = coefficients
 		self.m_kernel_params = kernel_params
 		self.m_kernel_type = kernel_type
@@ -22,4 +25,5 @@ class SVMRegressor_1:
 		self.m_support_vectors = support_vectors
 
 	def __call__(self, X: str):
-		 return Y
+		input = (self.tensor[X])
+		return self.tensor[Y]

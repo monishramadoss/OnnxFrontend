@@ -1,4 +1,6 @@
 import numpy as np
+from __future__ import absolute_import
+from __future__ import division
 
 class QLinearConv_10:
 
@@ -8,8 +10,9 @@ class QLinearConv_10:
 	kernel_shape = m_list()
 	pads = m_list()
 	strides = m_list()
-	def __init__(self, _name: str, auto_pad: str, dilations: list, group: int, kernel_shape: list, pads: list, strides: list):
+	def __init__(self, _name: str, _tensor: dict, auto_pad: str, dilations: list, group: int, kernel_shape: list, pads: list, strides: list):
 		self.name = _name
+		self.tensor = _tensor
 		self.m_auto_pad = auto_pad
 		self.m_dilations = dilations
 		self.m_group = group
@@ -18,4 +21,5 @@ class QLinearConv_10:
 		self.m_strides = strides
 
 	def __call__(self, x: str, x_scale: str, x_zero_point: str, w: str, w_scale: str, w_zero_point: str, y_scale: str, y_zero_point: str, B: str):
-		 return y
+		input = (self.tensor[x], self.tensor[x_scale], self.tensor[x_zero_point], self.tensor[w], self.tensor[w_scale], self.tensor[w_zero_point], self.tensor[y_scale], self.tensor[y_zero_point], self.tensor[B])
+		return self.tensor[y]

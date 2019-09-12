@@ -65,7 +65,7 @@ def _attr_type(attr):
 
 def _schema(f, schema):
     doc = ''
-    file = '\n'.join(['import numpy as np'])
+    file = '\n'.join(['import numpy as np', 'from __future__ import absolute_import', 'from __future__ import division'])
     
 
     for n_schema in schema:
@@ -97,13 +97,16 @@ def _schema(f, schema):
             for output in n_schema.outputs:
                 outputs.append(output.name)
         #init
-        file += '\tdef __init__(self, _name: str{0}):'.format(''.join(', {0}: {1}'.format(i, j) for i, j in attributes))
-        file += ''.join('\n\t\tself.name = _name')
+        file += '\tdef __init__(self, _name: str, _tensor: dict{0}):'.format(''.join(', {0}: {1}'.format(i, j) for i, j in attributes))
+        file += '\n\t\tself.name = _name'
+        file += '\n\t\tself.tensor = _tensor'
         file += ''.join('\n\t\tself.m_{0} = {0}'.format(i) for i,j in attributes)
 
         #call
         file += '\n\n\tdef __call__(self{0}):'.format(''.join(', {0}: str'.format(i) for i in inputs))
-        file += '\n\t\t return {0}'. format(', '.join('{0}'.format(i) for i in outputs))
+        file += '\n\t\tinput = (' + ', '.join('self.tensor[{0}]'.format(i) for i in inputs) + ')'
+        file += '\n\t\treturn {0}'. format(', '.join('self.tensor[{0}]'.format(i) for i in outputs))
+        
 
         file += '\n'
 
@@ -121,8 +124,11 @@ def build():
         os.mkdir(NN)
     else:
         map(os.unlink, (os.math.join(NN,f) for f in os.listdir(NN)) )
-    open(ML + '/__init__.py', 'w')
-    open(NN + '/__init__.py', 'w')
+    initf = open(ML + '/__init__.py', 'w')
+    initf2 = open(NN + '/__init__.py', 'w')
+    
+    initf.write('from . import *')
+    initf2.write("from . import *")
 
     schemas = onnx.defs.get_all_schemas()
     func_ops = onnx.defs.get_function_ops()

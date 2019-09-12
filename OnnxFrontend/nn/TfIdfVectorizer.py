@@ -1,4 +1,6 @@
 import numpy as np
+from __future__ import absolute_import
+from __future__ import division
 
 class TfIdfVectorizer_9:
 
@@ -11,8 +13,9 @@ class TfIdfVectorizer_9:
 	pool_int64s = m_list()
 	pool_strings = m_list()
 	weights = m_list()
-	def __init__(self, _name: str, max_gram_length: int, max_skip_count: int, min_gram_length: int, mode: str, ngram_counts: list, ngram_indexes: list, pool_int64s: list, pool_strings: list, weights: list):
+	def __init__(self, _name: str, _tensor: dict, max_gram_length: int, max_skip_count: int, min_gram_length: int, mode: str, ngram_counts: list, ngram_indexes: list, pool_int64s: list, pool_strings: list, weights: list):
 		self.name = _name
+		self.tensor = _tensor
 		self.m_max_gram_length = max_gram_length
 		self.m_max_skip_count = max_skip_count
 		self.m_min_gram_length = min_gram_length
@@ -24,4 +27,5 @@ class TfIdfVectorizer_9:
 		self.m_weights = weights
 
 	def __call__(self, X: str):
-		 return Y
+		input = (self.tensor[X])
+		return self.tensor[Y]

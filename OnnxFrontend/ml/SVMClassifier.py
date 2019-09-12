@@ -1,4 +1,6 @@
 import numpy as np
+from __future__ import absolute_import
+from __future__ import division
 
 class SVMClassifier_1:
 
@@ -13,8 +15,9 @@ class SVMClassifier_1:
 	rho = m_list()
 	support_vectors = m_list()
 	vectors_per_class = m_list()
-	def __init__(self, _name: str, classlabels_ints: list, classlabels_strings: list, coefficients: list, kernel_params: list, kernel_type: str, post_transform: str, prob_a: list, prob_b: list, rho: list, support_vectors: list, vectors_per_class: list):
+	def __init__(self, _name: str, _tensor: dict, classlabels_ints: list, classlabels_strings: list, coefficients: list, kernel_params: list, kernel_type: str, post_transform: str, prob_a: list, prob_b: list, rho: list, support_vectors: list, vectors_per_class: list):
 		self.name = _name
+		self.tensor = _tensor
 		self.m_classlabels_ints = classlabels_ints
 		self.m_classlabels_strings = classlabels_strings
 		self.m_coefficients = coefficients
@@ -28,4 +31,5 @@ class SVMClassifier_1:
 		self.m_vectors_per_class = vectors_per_class
 
 	def __call__(self, X: str):
-		 return Y, Z
+		input = (self.tensor[X])
+		return self.tensor[Y], self.tensor[Z]
