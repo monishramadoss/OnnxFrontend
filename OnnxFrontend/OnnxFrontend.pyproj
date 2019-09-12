@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="OnnxFrontend.py" />
+    <Compile Include="onnxforntend.py" />
     <Compile Include="onnx_module_builder.py">
       <SubType>Code</SubType>
     </Compile>
