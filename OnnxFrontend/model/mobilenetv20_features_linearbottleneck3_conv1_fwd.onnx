@@ -1,28 +1,0 @@
-
-onnxtester:≥
-¥
-1mobilenetv20_features_linearbottleneck3_relu0_fwd
-4mobilenetv20_features_linearbottleneck3_conv1_weight1mobilenetv20_features_linearbottleneck3_conv1_fwd1mobilenetv20_features_linearbottleneck3_conv1_fwd"Conv*
-	dilations@@†*
-groupê†*
-kernel_shape@@†*
-pads@@@@†*
-strides@@†compute_graphZL
-1mobilenetv20_features_linearbottleneck3_relu0_fwd
-
-
-ê
-8
-8ZO
-4mobilenetv20_features_linearbottleneck3_conv1_weight
-
-ê
-
-
-bL
-1mobilenetv20_features_linearbottleneck3_conv1_fwd
-
-
-ê
-
-B

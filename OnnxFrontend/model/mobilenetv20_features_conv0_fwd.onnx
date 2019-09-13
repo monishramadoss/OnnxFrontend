@@ -1,28 +1,0 @@
-
-onnxtester:ý
-Ð
-data
-"mobilenetv20_features_conv0_weightmobilenetv20_features_conv0_fwdmobilenetv20_features_conv0_fwd"Conv*
-	dilations@@ *
-group *
-kernel_shape@@ *
-pads@@@@ *
-strides@@ compute_graphZ 
-data
-
-
-
-à
-àZ<
-"mobilenetv20_features_conv0_weight
-
- 
-
-
-b9
-mobilenetv20_features_conv0_fwd
-
-
- 
-p
-pB

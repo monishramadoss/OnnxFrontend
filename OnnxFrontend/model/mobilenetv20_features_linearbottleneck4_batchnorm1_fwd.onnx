@@ -1,35 +1,0 @@
-
-onnxtester:Å
-â
-1mobilenetv20_features_linearbottleneck4_conv1_fwd
-8mobilenetv20_features_linearbottleneck4_batchnorm1_gamma
-7mobilenetv20_features_linearbottleneck4_batchnorm1_beta
-?mobilenetv20_features_linearbottleneck4_batchnorm1_running_mean
->mobilenetv20_features_linearbottleneck4_batchnorm1_running_var6mobilenetv20_features_linearbottleneck4_batchnorm1_fwd6mobilenetv20_features_linearbottleneck4_batchnorm1_fwd"BatchNormalization*
-epsilon¬Å'7 *
-momentumfff? *
-spatial compute_graphZL
-1mobilenetv20_features_linearbottleneck4_conv1_fwd
-
-
-À
-
-ZG
-8mobilenetv20_features_linearbottleneck4_batchnorm1_gamma
-	
-ÀZF
-7mobilenetv20_features_linearbottleneck4_batchnorm1_beta
-	
-ÀZN
-?mobilenetv20_features_linearbottleneck4_batchnorm1_running_mean
-	
-ÀZM
->mobilenetv20_features_linearbottleneck4_batchnorm1_running_var
-	
-ÀbQ
-6mobilenetv20_features_linearbottleneck4_batchnorm1_fwd
-
-
-À
-
-B
