@@ -1,0 +1,28 @@
+
+onnxtester:º
+¸
+2mobilenetv20_features_linearbottleneck13_relu0_fwd
+5mobilenetv20_features_linearbottleneck13_conv1_weight2mobilenetv20_features_linearbottleneck13_conv1_fwd2mobilenetv20_features_linearbottleneck13_conv1_fwd"Conv*
+	dilations@@ *
+groupÀ *
+kernel_shape@@ *
+pads@@@@ *
+strides@@ compute_graphZM
+2mobilenetv20_features_linearbottleneck13_relu0_fwd
+
+
+À
+
+ZP
+5mobilenetv20_features_linearbottleneck13_conv1_weight
+
+À
+
+
+bM
+2mobilenetv20_features_linearbottleneck13_conv1_fwd
+
+
+À
+
+B

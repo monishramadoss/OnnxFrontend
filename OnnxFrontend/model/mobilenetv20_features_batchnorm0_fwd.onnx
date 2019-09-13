@@ -1,0 +1,39 @@
+
+onnxtester:Õ
+ä
+mobilenetv20_features_conv0_fwd
+&mobilenetv20_features_batchnorm0_gamma
+%mobilenetv20_features_batchnorm0_beta
+-mobilenetv20_features_batchnorm0_running_mean
+,mobilenetv20_features_batchnorm0_running_var$mobilenetv20_features_batchnorm0_fwd$mobilenetv20_features_batchnorm0_fwd"BatchNormalization*
+epsilon¬Å'7 *
+momentumfff? *
+spatial compute_graphZ9
+mobilenetv20_features_conv0_fwd
+
+
+ 
+p
+pZ4
+&mobilenetv20_features_batchnorm0_gamma
+
+
+ Z3
+%mobilenetv20_features_batchnorm0_beta
+
+
+ Z;
+-mobilenetv20_features_batchnorm0_running_mean
+
+
+ Z:
+,mobilenetv20_features_batchnorm0_running_var
+
+
+ b>
+$mobilenetv20_features_batchnorm0_fwd
+
+
+ 
+p
+pB

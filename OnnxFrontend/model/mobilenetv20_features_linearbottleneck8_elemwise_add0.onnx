@@ -1,0 +1,23 @@
+
+onnxtester:è
+â
+6mobilenetv20_features_linearbottleneck8_batchnorm2_fwd
+5mobilenetv20_features_linearbottleneck7_elemwise_add05mobilenetv20_features_linearbottleneck8_elemwise_add05mobilenetv20_features_linearbottleneck8_elemwise_add0"Addcompute_graphZP
+6mobilenetv20_features_linearbottleneck8_batchnorm2_fwd
+
+
+@
+
+ZO
+5mobilenetv20_features_linearbottleneck7_elemwise_add0
+
+
+@
+
+bO
+5mobilenetv20_features_linearbottleneck8_elemwise_add0
+
+
+@
+
+B

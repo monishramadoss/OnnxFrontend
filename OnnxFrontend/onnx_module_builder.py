@@ -72,7 +72,6 @@ def _schema(f, schema):
         name = n_schema.name
         file += '\n\nclass {0}_{1}:\n'.format(name, n_schema.since_version)
 
-
         if n_schema.doc:
             doc = '\n' + '\n'.join('  ' + line for line in n_schema.doc.lstrip().splitlines()) + '\n'
             

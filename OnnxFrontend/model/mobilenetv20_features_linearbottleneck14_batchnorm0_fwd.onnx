@@ -1,0 +1,35 @@
+
+onnxtester:Ò
+é
+2mobilenetv20_features_linearbottleneck14_conv0_fwd
+9mobilenetv20_features_linearbottleneck14_batchnorm0_gamma
+8mobilenetv20_features_linearbottleneck14_batchnorm0_beta
+@mobilenetv20_features_linearbottleneck14_batchnorm0_running_mean
+?mobilenetv20_features_linearbottleneck14_batchnorm0_running_var7mobilenetv20_features_linearbottleneck14_batchnorm0_fwd7mobilenetv20_features_linearbottleneck14_batchnorm0_fwd"BatchNormalization*
+epsilon¬Å'7 *
+momentumfff? *
+spatial compute_graphZM
+2mobilenetv20_features_linearbottleneck14_conv0_fwd
+
+
+À
+
+ZH
+9mobilenetv20_features_linearbottleneck14_batchnorm0_gamma
+	
+ÀZG
+8mobilenetv20_features_linearbottleneck14_batchnorm0_beta
+	
+ÀZO
+@mobilenetv20_features_linearbottleneck14_batchnorm0_running_mean
+	
+ÀZN
+?mobilenetv20_features_linearbottleneck14_batchnorm0_running_var
+	
+ÀbR
+7mobilenetv20_features_linearbottleneck14_batchnorm0_fwd
+
+
+À
+
+B
