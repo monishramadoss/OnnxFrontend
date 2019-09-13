@@ -127,8 +127,8 @@ def build():
     initf = open(ML + '/__init__.py', 'w')
     initf2 = open(NN + '/__init__.py', 'w')
     
-    initf.write('from . import *')
-    initf2.write("from . import *")
+    initf.write('from . import *\nlayer={}')
+    initf2.write("from . import *\nlayer={}")
 
     schemas = onnx.defs.get_all_schemas()
     func_ops = onnx.defs.get_function_ops()
@@ -137,11 +137,19 @@ def build():
     for schema in onnx.defs.get_all_schemas_with_history():
         index[schema.domain][int(schema.support_level)][schema.name].append(schema)
     
+    
+
     for support_level in index['ai.onnx.ml']:
         ml_schemas = index['ai.onnx.ml'][support_level]
         for ml_schema in ml_schemas:
             f = open(ML + "/{0}.py".format(ml_schema), 'w')
             schema=ml_schemas[ml_schema]
+
+            version = list()
+            for i in schema:
+                version.append(str(i.since_version))
+
+            initf.write("\nlayer['{0}'] = [{1}]".format(schema[0].name, ', '.join(version) ))
             _schema(f, schema)
             
     for support_level in index['']:
@@ -149,6 +157,12 @@ def build():
         for nn_schema in nn_schemas:
             f = open(NN + "/{0}.py".format(nn_schema), 'w')
             schema=nn_schemas[nn_schema]
+
+            version = list()
+            for i in schema:
+                version.append(str(i.since_version))
+
+            initf2.write("\nlayer['{0}'] = [{1}]".format(schema[0].name, ', '.join(version) ))
             _schema(f, schema)
 
 if(__name__=='__main__'):
