@@ -1,6 +1,6 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class MatMul_1:
 
@@ -8,9 +8,15 @@ class MatMul_1:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, A: str, B: str):
-		input = (self.tensor[A], self.tensor[B])
-		return self.tensor[Y]
+		self.m_A = A
+		self.m_B = B
+
+		return (self.tensor[self.m_Y])
 
 
 class MatMul_9:
@@ -19,6 +25,12 @@ class MatMul_9:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, A: str, B: str):
-		input = (self.tensor[A], self.tensor[B])
-		return self.tensor[Y]
+		self.m_A = A
+		self.m_B = B
+
+		return (self.tensor[self.m_Y])

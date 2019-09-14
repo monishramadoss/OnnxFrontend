@@ -1,30 +1,43 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class TopK_1:
 
-	axis = m_int()
-	k = m_int()
-	def __init__(self, _name: str, _tensor: dict, axis: int, k: int):
+	m_axis = int()
+	m_k = int()
+	def __init__(self, _name: str, _tensor: dict, axis=int(), k=int()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_axis = axis
 		self.m_k = k
 
+	def output(self, Values, Indices):
+		self.m_Values = Values
+		self.m_Indices = Indices
+
+
 	def __call__(self, X: str):
-		input = (self.tensor[X])
-		return self.tensor[Values], self.tensor[Indices]
+		self.m_X = X
+
+		return (self.tensor[self.m_Values, self.m_Indices])
 
 
 class TopK_10:
 
-	axis = m_int()
-	def __init__(self, _name: str, _tensor: dict, axis: int):
+	m_axis = int()
+	def __init__(self, _name: str, _tensor: dict, axis=int()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_axis = axis
 
+	def output(self, Values, Indices):
+		self.m_Values = Values
+		self.m_Indices = Indices
+
+
 	def __call__(self, X: str, K: str):
-		input = (self.tensor[X], self.tensor[K])
-		return self.tensor[Values], self.tensor[Indices]
+		self.m_X = X
+		self.m_K = K
+
+		return (self.tensor[self.m_Values, self.m_Indices])

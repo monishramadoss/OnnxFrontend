@@ -1,15 +1,15 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class Gemm_1:
 
-	alpha = m_float()
-	beta = m_float()
-	broadcast = m_int()
-	transA = m_int()
-	transB = m_int()
-	def __init__(self, _name: str, _tensor: dict, alpha: float, beta: float, broadcast: int, transA: int, transB: int):
+	m_alpha = float()
+	m_beta = float()
+	m_broadcast = int()
+	m_transA = int()
+	m_transB = int()
+	def __init__(self, _name: str, _tensor: dict, alpha=float(), beta=float(), broadcast=int(), transA=int(), transB=int()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_alpha = alpha
@@ -18,19 +18,26 @@ class Gemm_1:
 		self.m_transA = transA
 		self.m_transB = transB
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, A: str, B: str, C: str):
-		input = (self.tensor[A], self.tensor[B], self.tensor[C])
-		return self.tensor[Y]
+		self.m_A = A
+		self.m_B = B
+		self.m_C = C
+
+		return (self.tensor[self.m_Y])
 
 
 class Gemm_6:
 
-	alpha = m_float()
-	beta = m_float()
-	broadcast = m_int()
-	transA = m_int()
-	transB = m_int()
-	def __init__(self, _name: str, _tensor: dict, alpha: float, beta: float, broadcast: int, transA: int, transB: int):
+	m_alpha = float()
+	m_beta = float()
+	m_broadcast = int()
+	m_transA = int()
+	m_transB = int()
+	def __init__(self, _name: str, _tensor: dict, alpha=float(), beta=float(), broadcast=int(), transA=int(), transB=int()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_alpha = alpha
@@ -39,18 +46,25 @@ class Gemm_6:
 		self.m_transA = transA
 		self.m_transB = transB
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, A: str, B: str, C: str):
-		input = (self.tensor[A], self.tensor[B], self.tensor[C])
-		return self.tensor[Y]
+		self.m_A = A
+		self.m_B = B
+		self.m_C = C
+
+		return (self.tensor[self.m_Y])
 
 
 class Gemm_7:
 
-	alpha = m_float()
-	beta = m_float()
-	transA = m_int()
-	transB = m_int()
-	def __init__(self, _name: str, _tensor: dict, alpha: float, beta: float, transA: int, transB: int):
+	m_alpha = float()
+	m_beta = float()
+	m_transA = int()
+	m_transB = int()
+	def __init__(self, _name: str, _tensor: dict, alpha=float(), beta=float(), transA=int(), transB=int()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_alpha = alpha
@@ -58,18 +72,25 @@ class Gemm_7:
 		self.m_transA = transA
 		self.m_transB = transB
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, A: str, B: str, C: str):
-		input = (self.tensor[A], self.tensor[B], self.tensor[C])
-		return self.tensor[Y]
+		self.m_A = A
+		self.m_B = B
+		self.m_C = C
+
+		return (self.tensor[self.m_Y])
 
 
 class Gemm_9:
 
-	alpha = m_float()
-	beta = m_float()
-	transA = m_int()
-	transB = m_int()
-	def __init__(self, _name: str, _tensor: dict, alpha: float, beta: float, transA: int, transB: int):
+	m_alpha = float()
+	m_beta = float()
+	m_transA = int()
+	m_transB = int()
+	def __init__(self, _name: str, _tensor: dict, alpha=float(), beta=float(), transA=int(), transB=int()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_alpha = alpha
@@ -77,6 +98,13 @@ class Gemm_9:
 		self.m_transA = transA
 		self.m_transB = transB
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, A: str, B: str, C: str):
-		input = (self.tensor[A], self.tensor[B], self.tensor[C])
-		return self.tensor[Y]
+		self.m_A = A
+		self.m_B = B
+		self.m_C = C
+
+		return (self.tensor[self.m_Y])

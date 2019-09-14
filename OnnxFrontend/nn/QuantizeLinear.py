@@ -1,6 +1,6 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class QuantizeLinear_10:
 
@@ -8,6 +8,13 @@ class QuantizeLinear_10:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, y):
+		self.m_y = y
+
+
 	def __call__(self, x: str, y_scale: str, y_zero_point: str):
-		input = (self.tensor[x], self.tensor[y_scale], self.tensor[y_zero_point])
-		return self.tensor[y]
+		self.m_x = x
+		self.m_y_scale = y_scale
+		self.m_y_zero_point = y_zero_point
+
+		return (self.tensor[self.m_y])

@@ -1,20 +1,25 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class Reshape_1:
 
-	consumed_inputs = m_list()
-	shape = m_list()
-	def __init__(self, _name: str, _tensor: dict, consumed_inputs: list, shape: list):
+	m_consumed_inputs = list()
+	m_shape = list()
+	def __init__(self, _name: str, _tensor: dict, consumed_inputs=list(), shape=list()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_consumed_inputs = consumed_inputs
 		self.m_shape = shape
 
+	def output(self, reshaped):
+		self.m_reshaped = reshaped
+
+
 	def __call__(self, data: str):
-		input = (self.tensor[data])
-		return self.tensor[reshaped]
+		self.m_data = data
+
+		return (self.tensor[self.m_reshaped])
 
 
 class Reshape_5:
@@ -23,6 +28,12 @@ class Reshape_5:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, reshaped):
+		self.m_reshaped = reshaped
+
+
 	def __call__(self, data: str, shape: str):
-		input = (self.tensor[data], self.tensor[shape])
-		return self.tensor[reshaped]
+		self.m_data = data
+		self.m_shape = shape
+
+		return (self.tensor[self.m_reshaped])

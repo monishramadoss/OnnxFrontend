@@ -1,20 +1,39 @@
 from . import *
 layer={}
-layer['CastMap'] = [1]
-layer['OneHotEncoder'] = [1]
-layer['TreeEnsembleRegressor'] = [1]
-layer['Imputer'] = [1]
-layer['SVMClassifier'] = [1]
-layer['ArrayFeatureExtractor'] = [1]
-layer['Binarizer'] = [1]
-layer['CategoryMapper'] = [1]
-layer['DictVectorizer'] = [1]
-layer['FeatureVectorizer'] = [1]
-layer['LabelEncoder'] = [1, 2]
-layer['LinearClassifier'] = [1]
-layer['LinearRegressor'] = [1]
-layer['Normalizer'] = [1]
-layer['SVMRegressor'] = [1]
-layer['Scaler'] = [1]
-layer['TreeEnsembleClassifier'] = [1]
-layer['ZipMap'] = [1]
+
+from . import CastMap
+layer['CastMap'] = {1: CastMap.CastMap_1}
+from . import OneHotEncoder
+layer['OneHotEncoder'] = {1: OneHotEncoder.OneHotEncoder_1}
+from . import TreeEnsembleRegressor
+layer['TreeEnsembleRegressor'] = {1: TreeEnsembleRegressor.TreeEnsembleRegressor_1}
+from . import Imputer
+layer['Imputer'] = {1: Imputer.Imputer_1}
+from . import SVMClassifier
+layer['SVMClassifier'] = {1: SVMClassifier.SVMClassifier_1}
+from . import ArrayFeatureExtractor
+layer['ArrayFeatureExtractor'] = {1: ArrayFeatureExtractor.ArrayFeatureExtractor_1}
+from . import Binarizer
+layer['Binarizer'] = {1: Binarizer.Binarizer_1}
+from . import CategoryMapper
+layer['CategoryMapper'] = {1: CategoryMapper.CategoryMapper_1}
+from . import DictVectorizer
+layer['DictVectorizer'] = {1: DictVectorizer.DictVectorizer_1}
+from . import FeatureVectorizer
+layer['FeatureVectorizer'] = {1: FeatureVectorizer.FeatureVectorizer_1}
+from . import LabelEncoder
+layer['LabelEncoder'] = {1: LabelEncoder.LabelEncoder_1, 2: LabelEncoder.LabelEncoder_2}
+from . import LinearClassifier
+layer['LinearClassifier'] = {1: LinearClassifier.LinearClassifier_1}
+from . import LinearRegressor
+layer['LinearRegressor'] = {1: LinearRegressor.LinearRegressor_1}
+from . import Normalizer
+layer['Normalizer'] = {1: Normalizer.Normalizer_1}
+from . import SVMRegressor
+layer['SVMRegressor'] = {1: SVMRegressor.SVMRegressor_1}
+from . import Scaler
+layer['Scaler'] = {1: Scaler.Scaler_1}
+from . import TreeEnsembleClassifier
+layer['TreeEnsembleClassifier'] = {1: TreeEnsembleClassifier.TreeEnsembleClassifier_1}
+from . import ZipMap
+layer['ZipMap'] = {1: ZipMap.ZipMap_1}

@@ -1,20 +1,26 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class And_1:
 
-	axis = m_int()
-	broadcast = m_int()
-	def __init__(self, _name: str, _tensor: dict, axis: int, broadcast: int):
+	m_axis = int()
+	m_broadcast = int()
+	def __init__(self, _name: str, _tensor: dict, axis=int(), broadcast=int()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_axis = axis
 		self.m_broadcast = broadcast
 
+	def output(self, C):
+		self.m_C = C
+
+
 	def __call__(self, A: str, B: str):
-		input = (self.tensor[A], self.tensor[B])
-		return self.tensor[C]
+		self.m_A = A
+		self.m_B = B
+
+		return (self.tensor[self.m_C])
 
 
 class And_7:
@@ -23,6 +29,12 @@ class And_7:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, C):
+		self.m_C = C
+
+
 	def __call__(self, A: str, B: str):
-		input = (self.tensor[A], self.tensor[B])
-		return self.tensor[C]
+		self.m_A = A
+		self.m_B = B
+
+		return (self.tensor[self.m_C])

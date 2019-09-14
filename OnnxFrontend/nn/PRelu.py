@@ -1,18 +1,24 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class PRelu_1:
 
-	consumed_inputs = m_list()
-	def __init__(self, _name: str, _tensor: dict, consumed_inputs: list):
+	m_consumed_inputs = list()
+	def __init__(self, _name: str, _tensor: dict, consumed_inputs=list()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_consumed_inputs = consumed_inputs
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, X: str, slope: str):
-		input = (self.tensor[X], self.tensor[slope])
-		return self.tensor[Y]
+		self.m_X = X
+		self.m_slope = slope
+
+		return (self.tensor[self.m_Y])
 
 
 class PRelu_6:
@@ -21,9 +27,15 @@ class PRelu_6:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, X: str, slope: str):
-		input = (self.tensor[X], self.tensor[slope])
-		return self.tensor[Y]
+		self.m_X = X
+		self.m_slope = slope
+
+		return (self.tensor[self.m_Y])
 
 
 class PRelu_7:
@@ -32,9 +44,15 @@ class PRelu_7:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, X: str, slope: str):
-		input = (self.tensor[X], self.tensor[slope])
-		return self.tensor[Y]
+		self.m_X = X
+		self.m_slope = slope
+
+		return (self.tensor[self.m_Y])
 
 
 class PRelu_9:
@@ -43,6 +61,12 @@ class PRelu_9:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, X: str, slope: str):
-		input = (self.tensor[X], self.tensor[slope])
-		return self.tensor[Y]
+		self.m_X = X
+		self.m_slope = slope
+
+		return (self.tensor[self.m_Y])

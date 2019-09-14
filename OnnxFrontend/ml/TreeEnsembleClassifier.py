@@ -1,27 +1,27 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class TreeEnsembleClassifier_1:
 
-	base_values = m_list()
-	class_ids = m_list()
-	class_nodeids = m_list()
-	class_treeids = m_list()
-	class_weights = m_list()
-	classlabels_int64s = m_list()
-	classlabels_strings = m_list()
-	nodes_falsenodeids = m_list()
-	nodes_featureids = m_list()
-	nodes_hitrates = m_list()
-	nodes_missing_value_tracks_true = m_list()
-	nodes_modes = m_list()
-	nodes_nodeids = m_list()
-	nodes_treeids = m_list()
-	nodes_truenodeids = m_list()
-	nodes_values = m_list()
-	post_transform = m_str()
-	def __init__(self, _name: str, _tensor: dict, base_values: list, class_ids: list, class_nodeids: list, class_treeids: list, class_weights: list, classlabels_int64s: list, classlabels_strings: list, nodes_falsenodeids: list, nodes_featureids: list, nodes_hitrates: list, nodes_missing_value_tracks_true: list, nodes_modes: list, nodes_nodeids: list, nodes_treeids: list, nodes_truenodeids: list, nodes_values: list, post_transform: str):
+	m_base_values = list()
+	m_class_ids = list()
+	m_class_nodeids = list()
+	m_class_treeids = list()
+	m_class_weights = list()
+	m_classlabels_int64s = list()
+	m_classlabels_strings = list()
+	m_nodes_falsenodeids = list()
+	m_nodes_featureids = list()
+	m_nodes_hitrates = list()
+	m_nodes_missing_value_tracks_true = list()
+	m_nodes_modes = list()
+	m_nodes_nodeids = list()
+	m_nodes_treeids = list()
+	m_nodes_truenodeids = list()
+	m_nodes_values = list()
+	m_post_transform = str()
+	def __init__(self, _name: str, _tensor: dict, base_values=list(), class_ids=list(), class_nodeids=list(), class_treeids=list(), class_weights=list(), classlabels_int64s=list(), classlabels_strings=list(), nodes_falsenodeids=list(), nodes_featureids=list(), nodes_hitrates=list(), nodes_missing_value_tracks_true=list(), nodes_modes=list(), nodes_nodeids=list(), nodes_treeids=list(), nodes_truenodeids=list(), nodes_values=list(), post_transform=str()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_base_values = base_values
@@ -42,6 +42,12 @@ class TreeEnsembleClassifier_1:
 		self.m_nodes_values = nodes_values
 		self.m_post_transform = post_transform
 
+	def output(self, Y, Z):
+		self.m_Y = Y
+		self.m_Z = Z
+
+
 	def __call__(self, X: str):
-		input = (self.tensor[X])
-		return self.tensor[Y], self.tensor[Z]
+		self.m_X = X
+
+		return (self.tensor[self.m_Y, self.m_Z])

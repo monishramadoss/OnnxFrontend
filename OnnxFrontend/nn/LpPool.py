@@ -1,15 +1,15 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class LpPool_1:
 
-	auto_pad = m_str()
-	kernel_shape = m_list()
-	p = m_float()
-	pads = m_list()
-	strides = m_list()
-	def __init__(self, _name: str, _tensor: dict, auto_pad: str, kernel_shape: list, p: float, pads: list, strides: list):
+	m_auto_pad = str()
+	m_kernel_shape = list()
+	m_p = float()
+	m_pads = list()
+	m_strides = list()
+	def __init__(self, _name: str, _tensor: dict, auto_pad=str(), kernel_shape=list(), p=float(), pads=list(), strides=list()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_auto_pad = auto_pad
@@ -18,19 +18,24 @@ class LpPool_1:
 		self.m_pads = pads
 		self.m_strides = strides
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, X: str):
-		input = (self.tensor[X])
-		return self.tensor[Y]
+		self.m_X = X
+
+		return (self.tensor[self.m_Y])
 
 
 class LpPool_2:
 
-	auto_pad = m_str()
-	kernel_shape = m_list()
-	p = m_int()
-	pads = m_list()
-	strides = m_list()
-	def __init__(self, _name: str, _tensor: dict, auto_pad: str, kernel_shape: list, p: int, pads: list, strides: list):
+	m_auto_pad = str()
+	m_kernel_shape = list()
+	m_p = int()
+	m_pads = list()
+	m_strides = list()
+	def __init__(self, _name: str, _tensor: dict, auto_pad=str(), kernel_shape=list(), p=int(), pads=list(), strides=list()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_auto_pad = auto_pad
@@ -39,6 +44,11 @@ class LpPool_2:
 		self.m_pads = pads
 		self.m_strides = strides
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, X: str):
-		input = (self.tensor[X])
-		return self.tensor[Y]
+		self.m_X = X
+
+		return (self.tensor[self.m_Y])

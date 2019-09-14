@@ -1,6 +1,6 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class ArrayFeatureExtractor_1:
 
@@ -8,6 +8,12 @@ class ArrayFeatureExtractor_1:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, Z):
+		self.m_Z = Z
+
+
 	def __call__(self, X: str, Y: str):
-		input = (self.tensor[X], self.tensor[Y])
-		return self.tensor[Z]
+		self.m_X = X
+		self.m_Y = Y
+
+		return (self.tensor[self.m_Z])

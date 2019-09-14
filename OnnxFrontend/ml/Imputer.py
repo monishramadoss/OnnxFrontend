@@ -1,14 +1,14 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class Imputer_1:
 
-	imputed_value_floats = m_list()
-	imputed_value_int64s = m_list()
-	replaced_value_float = m_float()
-	replaced_value_int64 = m_int()
-	def __init__(self, _name: str, _tensor: dict, imputed_value_floats: list, imputed_value_int64s: list, replaced_value_float: float, replaced_value_int64: int):
+	m_imputed_value_floats = list()
+	m_imputed_value_int64s = list()
+	m_replaced_value_float = float()
+	m_replaced_value_int64 = int()
+	def __init__(self, _name: str, _tensor: dict, imputed_value_floats=list(), imputed_value_int64s=list(), replaced_value_float=float(), replaced_value_int64=int()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_imputed_value_floats = imputed_value_floats
@@ -16,6 +16,11 @@ class Imputer_1:
 		self.m_replaced_value_float = replaced_value_float
 		self.m_replaced_value_int64 = replaced_value_int64
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, X: str):
-		input = (self.tensor[X])
-		return self.tensor[Y]
+		self.m_X = X
+
+		return (self.tensor[self.m_Y])

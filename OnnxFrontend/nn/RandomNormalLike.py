@@ -1,14 +1,14 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class RandomNormalLike_1:
 
-	dtype = m_int()
-	mean = m_float()
-	scale = m_float()
-	seed = m_float()
-	def __init__(self, _name: str, _tensor: dict, dtype: int, mean: float, scale: float, seed: float):
+	m_dtype = int()
+	m_mean = float()
+	m_scale = float()
+	m_seed = float()
+	def __init__(self, _name: str, _tensor: dict, dtype=int(), mean=float(), scale=float(), seed=float()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_dtype = dtype
@@ -16,6 +16,11 @@ class RandomNormalLike_1:
 		self.m_scale = scale
 		self.m_seed = seed
 
+	def output(self, output):
+		self.m_output = output
+
+
 	def __call__(self, input: str):
-		input = (self.tensor[input])
-		return self.tensor[output]
+		self.m_input = input
+
+		return (self.tensor[self.m_output])

@@ -1,15 +1,21 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class Compress_9:
 
-	axis = m_int()
-	def __init__(self, _name: str, _tensor: dict, axis: int):
+	m_axis = int()
+	def __init__(self, _name: str, _tensor: dict, axis=int()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_axis = axis
 
+	def output(self, output):
+		self.m_output = output
+
+
 	def __call__(self, input: str, condition: str):
-		input = (self.tensor[input], self.tensor[condition])
-		return self.tensor[output]
+		self.m_input = input
+		self.m_condition = condition
+
+		return (self.tensor[self.m_output])

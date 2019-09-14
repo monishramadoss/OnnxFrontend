@@ -1,30 +1,44 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class InstanceNormalization_1:
 
-	consumed_inputs = m_list()
-	epsilon = m_float()
-	def __init__(self, _name: str, _tensor: dict, consumed_inputs: list, epsilon: float):
+	m_consumed_inputs = list()
+	m_epsilon = float()
+	def __init__(self, _name: str, _tensor: dict, consumed_inputs=list(), epsilon=float()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_consumed_inputs = consumed_inputs
 		self.m_epsilon = epsilon
 
+	def output(self, output):
+		self.m_output = output
+
+
 	def __call__(self, input: str, scale: str, B: str):
-		input = (self.tensor[input], self.tensor[scale], self.tensor[B])
-		return self.tensor[output]
+		self.m_input = input
+		self.m_scale = scale
+		self.m_B = B
+
+		return (self.tensor[self.m_output])
 
 
 class InstanceNormalization_6:
 
-	epsilon = m_float()
-	def __init__(self, _name: str, _tensor: dict, epsilon: float):
+	m_epsilon = float()
+	def __init__(self, _name: str, _tensor: dict, epsilon=float()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_epsilon = epsilon
 
+	def output(self, output):
+		self.m_output = output
+
+
 	def __call__(self, input: str, scale: str, B: str):
-		input = (self.tensor[input], self.tensor[scale], self.tensor[B])
-		return self.tensor[output]
+		self.m_input = input
+		self.m_scale = scale
+		self.m_B = B
+
+		return (self.tensor[self.m_output])

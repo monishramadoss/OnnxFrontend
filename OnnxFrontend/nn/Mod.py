@@ -1,15 +1,21 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class Mod_10:
 
-	fmod = m_int()
-	def __init__(self, _name: str, _tensor: dict, fmod: int):
+	m_fmod = int()
+	def __init__(self, _name: str, _tensor: dict, fmod=int()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_fmod = fmod
 
+	def output(self, C):
+		self.m_C = C
+
+
 	def __call__(self, A: str, B: str):
-		input = (self.tensor[A], self.tensor[B])
-		return self.tensor[C]
+		self.m_A = A
+		self.m_B = B
+
+		return (self.tensor[self.m_C])

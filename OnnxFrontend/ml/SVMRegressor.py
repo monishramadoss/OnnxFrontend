@@ -1,18 +1,18 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class SVMRegressor_1:
 
-	coefficients = m_list()
-	kernel_params = m_list()
-	kernel_type = m_str()
-	n_supports = m_int()
-	one_class = m_int()
-	post_transform = m_str()
-	rho = m_list()
-	support_vectors = m_list()
-	def __init__(self, _name: str, _tensor: dict, coefficients: list, kernel_params: list, kernel_type: str, n_supports: int, one_class: int, post_transform: str, rho: list, support_vectors: list):
+	m_coefficients = list()
+	m_kernel_params = list()
+	m_kernel_type = str()
+	m_n_supports = int()
+	m_one_class = int()
+	m_post_transform = str()
+	m_rho = list()
+	m_support_vectors = list()
+	def __init__(self, _name: str, _tensor: dict, coefficients=list(), kernel_params=list(), kernel_type=str(), n_supports=int(), one_class=int(), post_transform=str(), rho=list(), support_vectors=list()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_coefficients = coefficients
@@ -24,6 +24,11 @@ class SVMRegressor_1:
 		self.m_rho = rho
 		self.m_support_vectors = support_vectors
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, X: str):
-		input = (self.tensor[X])
-		return self.tensor[Y]
+		self.m_X = X
+
+		return (self.tensor[self.m_Y])

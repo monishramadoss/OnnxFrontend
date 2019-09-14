@@ -1,6 +1,6 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class Size_1:
 
@@ -8,6 +8,11 @@ class Size_1:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, size):
+		self.m_size = size
+
+
 	def __call__(self, data: str):
-		input = (self.tensor[data])
-		return self.tensor[size]
+		self.m_data = data
+
+		return (self.tensor[self.m_size])

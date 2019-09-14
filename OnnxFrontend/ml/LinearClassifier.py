@@ -1,16 +1,16 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class LinearClassifier_1:
 
-	classlabels_ints = m_list()
-	classlabels_strings = m_list()
-	coefficients = m_list()
-	intercepts = m_list()
-	multi_class = m_int()
-	post_transform = m_str()
-	def __init__(self, _name: str, _tensor: dict, classlabels_ints: list, classlabels_strings: list, coefficients: list, intercepts: list, multi_class: int, post_transform: str):
+	m_classlabels_ints = list()
+	m_classlabels_strings = list()
+	m_coefficients = list()
+	m_intercepts = list()
+	m_multi_class = int()
+	m_post_transform = str()
+	def __init__(self, _name: str, _tensor: dict, classlabels_ints=list(), classlabels_strings=list(), coefficients=list(), intercepts=list(), multi_class=int(), post_transform=str()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_classlabels_ints = classlabels_ints
@@ -20,6 +20,12 @@ class LinearClassifier_1:
 		self.m_multi_class = multi_class
 		self.m_post_transform = post_transform
 
+	def output(self, Y, Z):
+		self.m_Y = Y
+		self.m_Z = Z
+
+
 	def __call__(self, X: str):
-		input = (self.tensor[X])
-		return self.tensor[Y], self.tensor[Z]
+		self.m_X = X
+
+		return (self.tensor[self.m_Y, self.m_Z])

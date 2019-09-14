@@ -1,6 +1,6 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class Sinh_9:
 
@@ -8,6 +8,11 @@ class Sinh_9:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, output):
+		self.m_output = output
+
+
 	def __call__(self, input: str):
-		input = (self.tensor[input])
-		return self.tensor[output]
+		self.m_input = input
+
+		return (self.tensor[self.m_output])

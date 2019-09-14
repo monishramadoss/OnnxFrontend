@@ -1,16 +1,16 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class Conv_1:
 
-	auto_pad = m_str()
-	dilations = m_list()
-	group = m_int()
-	kernel_shape = m_list()
-	pads = m_list()
-	strides = m_list()
-	def __init__(self, _name: str, _tensor: dict, auto_pad: str, dilations: list, group: int, kernel_shape: list, pads: list, strides: list):
+	m_auto_pad = str()
+	m_dilations = list()
+	m_group = int()
+	m_kernel_shape = list()
+	m_pads = list()
+	m_strides = list()
+	def __init__(self, _name: str, _tensor: dict, auto_pad=str(), dilations=list(), group=int(), kernel_shape=list(), pads=list(), strides=list()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_auto_pad = auto_pad
@@ -20,6 +20,13 @@ class Conv_1:
 		self.m_pads = pads
 		self.m_strides = strides
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, X: str, W: str, B: str):
-		input = (self.tensor[X], self.tensor[W], self.tensor[B])
-		return self.tensor[Y]
+		self.m_X = X
+		self.m_W = W
+		self.m_B = B
+
+		return (self.tensor[self.m_Y])

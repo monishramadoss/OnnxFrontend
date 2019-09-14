@@ -1,18 +1,23 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class Log_1:
 
-	consumed_inputs = m_list()
-	def __init__(self, _name: str, _tensor: dict, consumed_inputs: list):
+	m_consumed_inputs = list()
+	def __init__(self, _name: str, _tensor: dict, consumed_inputs=list()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_consumed_inputs = consumed_inputs
 
+	def output(self, output):
+		self.m_output = output
+
+
 	def __call__(self, input: str):
-		input = (self.tensor[input])
-		return self.tensor[output]
+		self.m_input = input
+
+		return (self.tensor[self.m_output])
 
 
 class Log_6:
@@ -21,6 +26,11 @@ class Log_6:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, output):
+		self.m_output = output
+
+
 	def __call__(self, input: str):
-		input = (self.tensor[input])
-		return self.tensor[output]
+		self.m_input = input
+
+		return (self.tensor[self.m_output])

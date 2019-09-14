@@ -1,15 +1,20 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class MeanVarianceNormalization_9:
 
-	axes = m_list()
-	def __init__(self, _name: str, _tensor: dict, axes: list):
+	m_axes = list()
+	def __init__(self, _name: str, _tensor: dict, axes=list()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_axes = axes
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, X: str):
-		input = (self.tensor[X])
-		return self.tensor[Y]
+		self.m_X = X
+
+		return (self.tensor[self.m_Y])

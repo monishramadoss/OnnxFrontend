@@ -1,6 +1,6 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class MatMulInteger_10:
 
@@ -8,6 +8,14 @@ class MatMulInteger_10:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, Y):
+		self.m_Y = Y
+
+
 	def __call__(self, A: str, B: str, a_zero_point: str, b_zero_point: str):
-		input = (self.tensor[A], self.tensor[B], self.tensor[a_zero_point], self.tensor[b_zero_point])
-		return self.tensor[Y]
+		self.m_A = A
+		self.m_B = B
+		self.m_a_zero_point = a_zero_point
+		self.m_b_zero_point = b_zero_point
+
+		return (self.tensor[self.m_Y])

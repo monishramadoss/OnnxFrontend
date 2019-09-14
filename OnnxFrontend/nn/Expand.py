@@ -1,6 +1,6 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class Expand_8:
 
@@ -8,6 +8,12 @@ class Expand_8:
 		self.name = _name
 		self.tensor = _tensor
 
+	def output(self, output):
+		self.m_output = output
+
+
 	def __call__(self, input: str, shape: str):
-		input = (self.tensor[input], self.tensor[shape])
-		return self.tensor[output]
+		self.m_input = input
+		self.m_shape = shape
+
+		return (self.tensor[self.m_output])

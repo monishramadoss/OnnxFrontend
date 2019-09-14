@@ -1,17 +1,22 @@
-import numpy as np
 from __future__ import absolute_import
 from __future__ import division
+import numpy as np
 
 class ArgMin_1:
 
-	axis = m_int()
-	keepdims = m_int()
-	def __init__(self, _name: str, _tensor: dict, axis: int, keepdims: int):
+	m_axis = int()
+	m_keepdims = int()
+	def __init__(self, _name: str, _tensor: dict, axis=int(), keepdims=int()):
 		self.name = _name
 		self.tensor = _tensor
 		self.m_axis = axis
 		self.m_keepdims = keepdims
 
+	def output(self, reduced):
+		self.m_reduced = reduced
+
+
 	def __call__(self, data: str):
-		input = (self.tensor[data])
-		return self.tensor[reduced]
+		self.m_data = data
+
+		return (self.tensor[self.m_reduced])

@@ -65,7 +65,7 @@ def _attr_type(attr):
 
 def _schema(f, schema):
     doc = ''
-    file = '\n'.join(['import numpy as np', 'from __future__ import absolute_import', 'from __future__ import division'])
+    file = '\n'.join(['from __future__ import absolute_import', 'from __future__ import division', 'import numpy as np',])
     
 
     for n_schema in schema:
@@ -75,44 +75,44 @@ def _schema(f, schema):
         if n_schema.doc:
             doc = '\n' + '\n'.join('  ' + line for line in n_schema.doc.lstrip().splitlines()) + '\n'
             
-        if n_schema.support_level == OpSchema.SupportType.EXPERIMENTAL:
-            return
-        if n_schema.deprecated:
-            return
+        if n_schema.support_level != OpSchema.SupportType.EXPERIMENTAL or not n_schema.deprecated:
+            attributes = []
+            inputs = []
+            outputs = []
 
-        attributes = []
-        inputs = []
-        outputs = []
+            if n_schema.attributes:
+                for _, attr in sorted(n_schema.attributes.items()):
+                    file += '\n\tm_' + attr.name + ' = ' + _attr_type(attr.type) + '()'
+                    attributes.append((attr.name, _attr_type(attr.type)))
+            file += '\n'
+            if n_schema.inputs:
+                for input in n_schema.inputs:
+                    inputs.append(input.name)
+            if n_schema.outputs:
+                for output in n_schema.outputs:
+                    outputs.append(output.name)
+            #init
+            file += '\tdef __init__(self, _name: str, _tensor: dict{0}):'.format(''.join(', {0}={1}()'.format(i, j) for i, j in attributes))
+            file += '\n\t\tself.name = _name'
+            file += '\n\t\tself.tensor = _tensor'
+            file += ''.join('\n\t\tself.m_{0} = {0}'.format(i) for i,j in attributes)
 
-        if n_schema.attributes:
-            for _, attr in sorted(n_schema.attributes.items()):
-                file += '\n\t' + attr.name + ' = m_' + _attr_type(attr.type) + '()'
-                attributes.append((attr.name, _attr_type(attr.type)))
-        file += '\n'
-        if n_schema.inputs:
-            for input in n_schema.inputs:
-                inputs.append(input.name)
-        if n_schema.outputs:
-            for output in n_schema.outputs:
-                outputs.append(output.name)
-        #init
-        file += '\tdef __init__(self, _name: str, _tensor: dict{0}):'.format(''.join(', {0}: {1}'.format(i, j) for i, j in attributes))
-        file += '\n\t\tself.name = _name'
-        file += '\n\t\tself.tensor = _tensor'
-        file += ''.join('\n\t\tself.m_{0} = {0}'.format(i) for i,j in attributes)
+            #output
+            file += '\n\n\tdef output(self{0}):'.format(''.join(', {0}'.format(i) for i in outputs))
+            file += '\n\t\t' + '\n\t\t'.join('self.m_{0} = {0}'.format(i) for i in outputs) + '\n'
 
-        #call
-        file += '\n\n\tdef __call__(self{0}):'.format(''.join(', {0}: str'.format(i) for i in inputs))
-        file += '\n\t\tinput = (' + ', '.join('self.tensor[{0}]'.format(i) for i in inputs) + ')'
-        file += '\n\t\treturn {0}'. format(', '.join('self.tensor[{0}]'.format(i) for i in outputs))
+            #call
+            file += '\n\n\tdef __call__(self{0}):'.format(''.join(', {0}: str'.format(i) for i in inputs))
+            file += '\n\t\t' + '\n\t\t'.join('self.m_{0} = {0}'.format(i) for i in inputs) + '\n'
+            file += '\n\t\treturn (self.tensor[{0}])'. format(', '.join('self.m_{0}'.format(i) for i in outputs))   
         
 
-        file += '\n'
+            file += '\n'
 
-        if n_schema.has_function:
-            print(n_schema.name)
+            if n_schema.has_function:
+                print(n_schema.name)
 
-    f.write(file)
+    f.write(file.replace('...',''))
 
 def build():
     if not os.path.isdir(ML):
@@ -126,8 +126,8 @@ def build():
     initf = open(ML + '/__init__.py', 'w')
     initf2 = open(NN + '/__init__.py', 'w')
     
-    initf.write('from . import *\nlayer={}')
-    initf2.write("from . import *\nlayer={}")
+    initf.write('from . import *\nlayer={}\n')
+    initf2.write("from . import *\nlayer={}\n")
 
     schemas = onnx.defs.get_all_schemas()
     func_ops = onnx.defs.get_function_ops()
@@ -147,8 +147,10 @@ def build():
             version = list()
             for i in schema:
                 version.append(str(i.since_version))
-
-            initf.write("\nlayer['{0}'] = [{1}]".format(schema[0].name, ', '.join(version) ))
+                depricated = i.deprecated
+            if(not depricated):
+                initf.write("\nfrom . import {0}\nlayer['{0}'] = {{{1}}}".format(schema[0].name, ', '.join('{1}: {0}.{0}_{1}'.format(schema[0].name, v) for v in version)))
+            
             _schema(f, schema)
             
     for support_level in index['']:
@@ -158,10 +160,12 @@ def build():
             schema=nn_schemas[nn_schema]
 
             version = list()
+            depricated = False
             for i in schema:
                 version.append(str(i.since_version))
-
-            initf2.write("\nlayer['{0}'] = [{1}]".format(schema[0].name, ', '.join(version) ))
+                depricated = i.deprecated
+            if(not depricated):
+                initf2.write("\nfrom . import {0}\nlayer['{0}'] = {{{1}}}".format(schema[0].name, ', '.join('{1}: {0}.{0}_{1}'.format(schema[0].name, v) for v in version)))
             _schema(f, schema)
 
 if(__name__=='__main__'):
