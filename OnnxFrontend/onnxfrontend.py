@@ -41,7 +41,7 @@ class onnx_graph:
         self.tensors = {}
         self.nodes = {}
         self.tensor_data = {}
-        self.layers = []
+        self.layers = {}
 
         for vi in self.graph.input:
             self.tensors[vi.name] = vi
@@ -56,9 +56,10 @@ class onnx_graph:
             self.tensor_data[init.name] = numpy_helper.to_array(init)
                     
         version = model.opset_import[0].version
-        
+        ops = set()
         for node in self.graph.node:
             if node.op_type in nn.layer:
+                ops.add(node.op_type)
                 layer = nn.layer[node.op_type]
             if node.op_type in ml.layer:
                 layer = ml.layer[node.op_type]
@@ -66,12 +67,15 @@ class onnx_graph:
             attr = dict([('_name', node.name), ('_tensor', self.tensor_data)] + [(a.name, get_attribute_value(a)) for a in node.attribute])
             for i, l in sorted(layer.items(), key=lambda x: x[0], reverse=True):
                 if(i <= version):
-                    self.layers.append(l(**attr))
+                    self.layers[node.name] = l(**attr)
                     break
-
+        print("USED OPS :", ops)
         for node in self.graph.node:
             i = node.input
             o = node.output
+            self.layers[node.name](*i)
+
+
 
 
         #for node in self.graph.node:
