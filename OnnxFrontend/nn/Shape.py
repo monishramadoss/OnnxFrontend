@@ -8,11 +8,11 @@ class Shape_1:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, shape):
+	def output(self, shape=str()):
 		self.m_shape = shape
 
 
-	def __call__(self, data: str):
+	def __call__(self, data=str()):
 		self.m_data = data
 
 		return (self.tensor[self.m_shape])

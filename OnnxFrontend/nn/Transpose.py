@@ -10,11 +10,11 @@ class Transpose_1:
 		self.tensor = _tensor
 		self.m_perm = perm
 
-	def output(self, transposed):
+	def output(self, transposed=str()):
 		self.m_transposed = transposed
 
 
-	def __call__(self, data: str):
+	def __call__(self, data=str()):
 		self.m_data = data
 
 		return (self.tensor[self.m_transposed])

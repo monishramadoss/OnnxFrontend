@@ -8,11 +8,11 @@ class Where_9:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, condition: str, X: str, Y: str):
+	def __call__(self, condition=str(), X=str(), Y=str()):
 		self.m_condition = condition
 		self.m_X = X
 		self.m_Y = Y

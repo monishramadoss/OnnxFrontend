@@ -14,11 +14,11 @@ class Clip_1:
 		self.m_max = max
 		self.m_min = min
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, input: str):
+	def __call__(self, input=str()):
 		self.m_input = input
 
 		return (self.tensor[self.m_output])
@@ -34,11 +34,11 @@ class Clip_6:
 		self.m_max = max
 		self.m_min = min
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, input: str):
+	def __call__(self, input=str()):
 		self.m_input = input
 
 		return (self.tensor[self.m_output])

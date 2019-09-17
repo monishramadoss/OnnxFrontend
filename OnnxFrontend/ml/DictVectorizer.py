@@ -12,11 +12,11 @@ class DictVectorizer_1:
 		self.m_int64_vocabulary = int64_vocabulary
 		self.m_string_vocabulary = string_vocabulary
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])

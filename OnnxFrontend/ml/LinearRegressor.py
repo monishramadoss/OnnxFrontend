@@ -16,11 +16,11 @@ class LinearRegressor_1:
 		self.m_post_transform = post_transform
 		self.m_targets = targets
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])

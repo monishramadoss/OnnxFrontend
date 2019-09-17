@@ -16,11 +16,11 @@ class CategoryMapper_1:
 		self.m_default_int64 = default_int64
 		self.m_default_string = default_string
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])

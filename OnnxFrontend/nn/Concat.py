@@ -10,11 +10,11 @@ class Concat_1:
 		self.tensor = _tensor
 		self.m_axis = axis
 
-	def output(self, concat_result):
+	def output(self, concat_result=str()):
 		self.m_concat_result = concat_result
 
 
-	def __call__(self, inputs: str):
+	def __call__(self, inputs=str()):
 		self.m_inputs = inputs
 
 		return (self.tensor[self.m_concat_result])
@@ -28,11 +28,11 @@ class Concat_4:
 		self.tensor = _tensor
 		self.m_axis = axis
 
-	def output(self, concat_result):
+	def output(self, concat_result=str()):
 		self.m_concat_result = concat_result
 
 
-	def __call__(self, inputs: str):
+	def __call__(self, inputs=str()):
 		self.m_inputs = inputs
 
 		return (self.tensor[self.m_concat_result])

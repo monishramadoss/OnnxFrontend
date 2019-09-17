@@ -14,11 +14,11 @@ class LabelEncoder_1:
 		self.m_default_int64 = default_int64
 		self.m_default_string = default_string
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])
@@ -48,11 +48,11 @@ class LabelEncoder_2:
 		self.m_values_int64s = values_int64s
 		self.m_values_strings = values_strings
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])

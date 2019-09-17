@@ -14,11 +14,11 @@ class Selu_1:
 		self.m_consumed_inputs = consumed_inputs
 		self.m_gamma = gamma
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])
@@ -34,11 +34,11 @@ class Selu_6:
 		self.m_alpha = alpha
 		self.m_gamma = gamma
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])

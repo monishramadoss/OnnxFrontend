@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>OnnxFrontend</Name>
     <RootNamespace>OnnxFrontend</RootNamespace>
-    <InterpreterId>Global|ContinuumAnalytics|Anaconda37-64</InterpreterId>
+    <InterpreterId>CondaEnv|CondaEnv|ort_custom_build</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +31,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <InterpreterReference Include="CondaEnv|CondaEnv|ort_custom_build" />
     <InterpreterReference Include="Global|ContinuumAnalytics|Anaconda37-64" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

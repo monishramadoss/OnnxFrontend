@@ -31,16 +31,18 @@ def np_dtype_to_tensor_type(data_type):
 
 class onnx_graph:
     def __init__(self, filename):
-        #map(os.unlink, (os.path.join('./model',f) for f in os.listdir('./model')) )
         self.filename = filename
         model = onnx.load(filename)
+        self.prepare(model)
+     
+    def prepare(self, model):
         model = shape_inference.infer_shapes(model)
         self.graph = model.graph
         self.value_info = self.graph.value_info
 
         self.tensors = {}
         self.nodes = {}
-        self.tensor_data = {}
+        self.tensor_data = {'':0}
         self.layers = {}
 
         for vi in self.graph.input:
@@ -70,27 +72,19 @@ class onnx_graph:
                     self.layers[node.name] = l(**attr)
                     break
         print("USED OPS :", ops)
+
         for node in self.graph.node:
             i = node.input
             o = node.output
-            self.layers[node.name](*i)
 
+            if(node.op_type not in ['Scan']):
+                self.layers[node.name].output(*o)
+            else:
+                self.layers[node.name].output(o)
+            if(node.op_type not in ['Concat', 'Sum', 'Scan', 'Mean']):
+                self.layers[node.name](*i)
+            else:
+                self.layers[node.name](i)
+        
+        print()
 
-
-
-        #for node in self.graph.node:
-        #    input_tensors = [make_tensor_value_info(name, NP_TYPE_TO_TENSOR_TYPE[self.tensor_data[name].dtype], self.tensor_data[name].shape) for name in node.input]
-        #    output_tensors = [make_tensor_value_info(name, NP_TYPE_TO_TENSOR_TYPE[self.tensor_data[name].dtype], self.tensor_data[name].shape) for name in node.output]
-        #    n_graph = make_graph([node], 'compute_graph', input_tensors, output_tensors)
-        #    n_model = make_model(n_graph, producer_name='onnxtester')
-        #    n_model.opset_import[0].version = model.opset_import[0].version 
-        #    onnx.save(n_model, './model/' + node.name + '.onnx', )
-
-        #self.sessions = dict([(fname.split('.')[0], ort.InferenceSession("./model/" + fname)) for fname in os.listdir('./model')])
-
-        #for node in self.graph.node:
-        #    input =  dict([(i_name, self.tensor_data[i_name]) for i_name in node.input])
-        #    node.output
-        #    out = self.sessions[node.name].run(None, input)
-        #    for i,n in enumerate(node.output):
-        #        self.tensor_data[n] = out[i]            

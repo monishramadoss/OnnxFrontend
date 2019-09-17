@@ -12,11 +12,11 @@ class ZipMap_1:
 		self.m_classlabels_int64s = classlabels_int64s
 		self.m_classlabels_strings = classlabels_strings
 
-	def output(self, Z):
+	def output(self, Z=str()):
 		self.m_Z = Z
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Z])

@@ -12,11 +12,11 @@ class ReverseSequence_10:
 		self.m_batch_axis = batch_axis
 		self.m_time_axis = time_axis
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, input: str, sequence_lens: str):
+	def __call__(self, input=str(), sequence_lens=str()):
 		self.m_input = input
 		self.m_sequence_lens = sequence_lens
 

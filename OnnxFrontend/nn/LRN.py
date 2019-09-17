@@ -16,11 +16,11 @@ class LRN_1:
 		self.m_bias = bias
 		self.m_size = size
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])

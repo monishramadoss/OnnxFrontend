@@ -10,7 +10,7 @@ class Constant_1:
 		self.tensor = _tensor
 		self.m_value = value
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
@@ -28,7 +28,7 @@ class Constant_9:
 		self.tensor = _tensor
 		self.m_value = value
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 

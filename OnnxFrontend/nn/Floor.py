@@ -10,11 +10,11 @@ class Floor_1:
 		self.tensor = _tensor
 		self.m_consumed_inputs = consumed_inputs
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])
@@ -26,11 +26,11 @@ class Floor_6:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])

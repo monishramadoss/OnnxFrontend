@@ -42,11 +42,11 @@ class TreeEnsembleRegressor_1:
 		self.m_target_treeids = target_treeids
 		self.m_target_weights = target_weights
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])

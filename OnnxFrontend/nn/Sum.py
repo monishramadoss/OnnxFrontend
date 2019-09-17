@@ -10,11 +10,11 @@ class Sum_1:
 		self.tensor = _tensor
 		self.m_consumed_inputs = consumed_inputs
 
-	def output(self, sum):
+	def output(self, sum=str()):
 		self.m_sum = sum
 
 
-	def __call__(self, data_0: str):
+	def __call__(self, data_0=str()):
 		self.m_data_0 = data_0
 
 		return (self.tensor[self.m_sum])
@@ -26,11 +26,11 @@ class Sum_6:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, sum):
+	def output(self, sum=str()):
 		self.m_sum = sum
 
 
-	def __call__(self, data_0: str):
+	def __call__(self, data_0=str()):
 		self.m_data_0 = data_0
 
 		return (self.tensor[self.m_sum])
@@ -42,11 +42,11 @@ class Sum_8:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, sum):
+	def output(self, sum=str()):
 		self.m_sum = sum
 
 
-	def __call__(self, data_0: str):
+	def __call__(self, data_0=str()):
 		self.m_data_0 = data_0
 
 		return (self.tensor[self.m_sum])

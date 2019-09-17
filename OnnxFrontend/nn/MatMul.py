@@ -8,11 +8,11 @@ class MatMul_1:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, A: str, B: str):
+	def __call__(self, A=str(), B=str()):
 		self.m_A = A
 		self.m_B = B
 
@@ -25,11 +25,11 @@ class MatMul_9:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, A: str, B: str):
+	def __call__(self, A=str(), B=str()):
 		self.m_A = A
 		self.m_B = B
 

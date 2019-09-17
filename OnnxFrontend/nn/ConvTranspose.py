@@ -24,11 +24,11 @@ class ConvTranspose_1:
 		self.m_pads = pads
 		self.m_strides = strides
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str, W: str, B: str):
+	def __call__(self, X=str(), W=str(), B=str()):
 		self.m_X = X
 		self.m_W = W
 		self.m_B = B

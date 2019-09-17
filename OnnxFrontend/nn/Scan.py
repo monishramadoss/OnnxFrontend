@@ -14,11 +14,11 @@ class Scan_8:
 		self.m_directions = directions
 		self.m_num_scan_inputs = num_scan_inputs
 
-	def output(self, final_state_and_scan_outputs):
+	def output(self, final_state_and_scan_outputs=str()):
 		self.m_final_state_and_scan_outputs = final_state_and_scan_outputs
 
 
-	def __call__(self, sequence_lens: str, initial_state_and_scan_inputs: str):
+	def __call__(self, sequence_lens=str(), initial_state_and_scan_inputs=str()):
 		self.m_sequence_lens = sequence_lens
 		self.m_initial_state_and_scan_inputs = initial_state_and_scan_inputs
 
@@ -43,11 +43,11 @@ class Scan_9:
 		self.m_scan_output_axes = scan_output_axes
 		self.m_scan_output_directions = scan_output_directions
 
-	def output(self, final_state_and_scan_outputs):
+	def output(self, final_state_and_scan_outputs=str()):
 		self.m_final_state_and_scan_outputs = final_state_and_scan_outputs
 
 
-	def __call__(self, initial_state_and_scan_inputs: str):
+	def __call__(self, initial_state_and_scan_inputs=str()):
 		self.m_initial_state_and_scan_inputs = initial_state_and_scan_inputs
 
-		return (self.tensor[self.m_final_state_and_scan_outputs])
+		return #(self.tensor[self.m_final_state_and_scan_outputs])

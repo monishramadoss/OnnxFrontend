@@ -20,11 +20,11 @@ class QLinearConv_10:
 		self.m_pads = pads
 		self.m_strides = strides
 
-	def output(self, y):
+	def output(self, y=str()):
 		self.m_y = y
 
 
-	def __call__(self, x: str, x_scale: str, x_zero_point: str, w: str, w_scale: str, w_zero_point: str, y_scale: str, y_zero_point: str, B: str):
+	def __call__(self, x=str(), x_scale=str(), x_zero_point=str(), w=str(), w_scale=str(), w_zero_point=str(), y_scale=str(), y_zero_point=str(), B=str()):
 		self.m_x = x
 		self.m_x_scale = x_scale
 		self.m_x_zero_point = x_zero_point

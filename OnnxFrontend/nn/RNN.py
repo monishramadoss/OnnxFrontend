@@ -22,12 +22,12 @@ class RNN_1:
 		self.m_hidden_size = hidden_size
 		self.m_output_sequence = output_sequence
 
-	def output(self, Y, Y_h):
+	def output(self, Y=str(), Y_h=str()):
 		self.m_Y = Y
 		self.m_Y_h = Y_h
 
 
-	def __call__(self, X: str, W: str, R: str, B: str, sequence_lens: str, initial_h: str):
+	def __call__(self, X=str(), W=str(), R=str(), B=str(), sequence_lens=str(), initial_h=str()):
 		self.m_X = X
 		self.m_W = W
 		self.m_R = R
@@ -35,7 +35,7 @@ class RNN_1:
 		self.m_sequence_lens = sequence_lens
 		self.m_initial_h = initial_h
 
-		return (self.tensor[self.m_Y, self.m_Y_h])
+		return (self.tensor[self.m_Y], self.tensor[self.m_Y_h])
 
 
 class RNN_7:
@@ -56,12 +56,12 @@ class RNN_7:
 		self.m_direction = direction
 		self.m_hidden_size = hidden_size
 
-	def output(self, Y, Y_h):
+	def output(self, Y=str(), Y_h=str()):
 		self.m_Y = Y
 		self.m_Y_h = Y_h
 
 
-	def __call__(self, X: str, W: str, R: str, B: str, sequence_lens: str, initial_h: str):
+	def __call__(self, X=str(), W=str(), R=str(), B=str(), sequence_lens=str(), initial_h=str()):
 		self.m_X = X
 		self.m_W = W
 		self.m_R = R
@@ -69,4 +69,4 @@ class RNN_7:
 		self.m_sequence_lens = sequence_lens
 		self.m_initial_h = initial_h
 
-		return (self.tensor[self.m_Y, self.m_Y_h])
+		return (self.tensor[self.m_Y], self.tensor[self.m_Y_h])

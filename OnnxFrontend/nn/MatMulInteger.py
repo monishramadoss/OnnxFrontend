@@ -8,11 +8,11 @@ class MatMulInteger_10:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, A: str, B: str, a_zero_point: str, b_zero_point: str):
+	def __call__(self, A=str(), B=str(), a_zero_point=str(), b_zero_point=str()):
 		self.m_A = A
 		self.m_B = B
 		self.m_a_zero_point = a_zero_point

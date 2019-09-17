@@ -10,11 +10,11 @@ class Resize_10:
 		self.tensor = _tensor
 		self.m_mode = mode
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str, scales: str):
+	def __call__(self, X=str(), scales=str()):
 		self.m_X = X
 		self.m_scales = scales
 

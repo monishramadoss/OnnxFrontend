@@ -8,11 +8,11 @@ class Tile_1:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, input: str, tiles: str, axis: str):
+	def __call__(self, input=str(), tiles=str(), axis=str()):
 		self.m_input = input
 		self.m_tiles = tiles
 		self.m_axis = axis
@@ -26,11 +26,11 @@ class Tile_6:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, input: str, repeats: str):
+	def __call__(self, input=str(), repeats=str()):
 		self.m_input = input
 		self.m_repeats = repeats
 

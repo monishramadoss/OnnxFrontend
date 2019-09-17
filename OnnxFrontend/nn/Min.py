@@ -10,11 +10,11 @@ class Min_1:
 		self.tensor = _tensor
 		self.m_consumed_inputs = consumed_inputs
 
-	def output(self, min):
+	def output(self, min=str()):
 		self.m_min = min
 
 
-	def __call__(self, data_0: str):
+	def __call__(self, data_0=str()):
 		self.m_data_0 = data_0
 
 		return (self.tensor[self.m_min])
@@ -26,11 +26,11 @@ class Min_6:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, min):
+	def output(self, min=str()):
 		self.m_min = min
 
 
-	def __call__(self, data_0: str):
+	def __call__(self, data_0=str()):
 		self.m_data_0 = data_0
 
 		return (self.tensor[self.m_min])
@@ -42,11 +42,11 @@ class Min_8:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, min):
+	def output(self, min=str()):
 		self.m_min = min
 
 
-	def __call__(self, data_0: str):
+	def __call__(self, data_0=str()):
 		self.m_data_0 = data_0
 
 		return (self.tensor[self.m_min])

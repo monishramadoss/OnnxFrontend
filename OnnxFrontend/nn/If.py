@@ -12,11 +12,11 @@ class If_1:
 		self.m_else_branch = else_branch
 		self.m_then_branch = then_branch
 
-	def output(self, outputs):
+	def output(self, outputs=str()):
 		self.m_outputs = outputs
 
 
-	def __call__(self, cond: str):
+	def __call__(self, cond=str()):
 		self.m_cond = cond
 
 		return (self.tensor[self.m_outputs])

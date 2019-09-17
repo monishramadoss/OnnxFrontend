@@ -8,11 +8,11 @@ class QuantizeLinear_10:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, y):
+	def output(self, y=str()):
 		self.m_y = y
 
 
-	def __call__(self, x: str, y_scale: str, y_zero_point: str):
+	def __call__(self, x=str(), y_scale=str(), y_zero_point=str()):
 		self.m_x = x
 		self.m_y_scale = y_scale
 		self.m_y_zero_point = y_zero_point

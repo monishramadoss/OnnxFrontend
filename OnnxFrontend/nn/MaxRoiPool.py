@@ -12,11 +12,11 @@ class MaxRoiPool_1:
 		self.m_pooled_shape = pooled_shape
 		self.m_spatial_scale = spatial_scale
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str, rois: str):
+	def __call__(self, X=str(), rois=str()):
 		self.m_X = X
 		self.m_rois = rois
 

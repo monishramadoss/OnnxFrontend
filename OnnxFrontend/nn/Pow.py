@@ -12,11 +12,11 @@ class Pow_1:
 		self.m_axis = axis
 		self.m_broadcast = broadcast
 
-	def output(self, Z):
+	def output(self, Z=str()):
 		self.m_Z = Z
 
 
-	def __call__(self, X: str, Y: str):
+	def __call__(self, X=str(), Y=str()):
 		self.m_X = X
 		self.m_Y = Y
 
@@ -29,11 +29,11 @@ class Pow_7:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, Z):
+	def output(self, Z=str()):
 		self.m_Z = Z
 
 
-	def __call__(self, X: str, Y: str):
+	def __call__(self, X=str(), Y=str()):
 		self.m_X = X
 		self.m_Y = Y
 

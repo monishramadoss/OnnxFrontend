@@ -10,11 +10,11 @@ class Squeeze_1:
 		self.tensor = _tensor
 		self.m_axes = axes
 
-	def output(self, squeezed):
+	def output(self, squeezed=str()):
 		self.m_squeezed = squeezed
 
 
-	def __call__(self, data: str):
+	def __call__(self, data=str()):
 		self.m_data = data
 
 		return (self.tensor[self.m_squeezed])

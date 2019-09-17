@@ -14,11 +14,11 @@ class Pad_1:
 		self.m_paddings = paddings
 		self.m_value = value
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, data: str):
+	def __call__(self, data=str()):
 		self.m_data = data
 
 		return (self.tensor[self.m_output])
@@ -36,11 +36,11 @@ class Pad_2:
 		self.m_pads = pads
 		self.m_value = value
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, data: str):
+	def __call__(self, data=str()):
 		self.m_data = data
 
 		return (self.tensor[self.m_output])

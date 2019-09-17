@@ -12,15 +12,15 @@ class TopK_1:
 		self.m_axis = axis
 		self.m_k = k
 
-	def output(self, Values, Indices):
+	def output(self, Values=str(), Indices=str()):
 		self.m_Values = Values
 		self.m_Indices = Indices
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
-		return (self.tensor[self.m_Values, self.m_Indices])
+		return (self.tensor[self.m_Values], self.tensor[self.m_Indices])
 
 
 class TopK_10:
@@ -31,13 +31,13 @@ class TopK_10:
 		self.tensor = _tensor
 		self.m_axis = axis
 
-	def output(self, Values, Indices):
+	def output(self, Values=str(), Indices=str()):
 		self.m_Values = Values
 		self.m_Indices = Indices
 
 
-	def __call__(self, X: str, K: str):
+	def __call__(self, X=str(), K=str()):
 		self.m_X = X
 		self.m_K = K
 
-		return (self.tensor[self.m_Values, self.m_Indices])
+		return (self.tensor[self.m_Values], self.tensor[self.m_Indices])

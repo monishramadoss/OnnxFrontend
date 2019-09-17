@@ -12,11 +12,11 @@ class IsInf_10:
 		self.m_detect_negative = detect_negative
 		self.m_detect_positive = detect_positive
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])

@@ -8,11 +8,11 @@ class Size_1:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, size):
+	def output(self, size=str()):
 		self.m_size = size
 
 
-	def __call__(self, data: str):
+	def __call__(self, data=str()):
 		self.m_data = data
 
 		return (self.tensor[self.m_size])

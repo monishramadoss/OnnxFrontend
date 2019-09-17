@@ -18,11 +18,11 @@ class RoiAlign_10:
 		self.m_sampling_ratio = sampling_ratio
 		self.m_spatial_scale = spatial_scale
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str, rois: str, batch_indices: str):
+	def __call__(self, X=str(), rois=str(), batch_indices=str()):
 		self.m_X = X
 		self.m_rois = rois
 		self.m_batch_indices = batch_indices

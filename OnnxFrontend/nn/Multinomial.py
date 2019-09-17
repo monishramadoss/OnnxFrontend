@@ -14,11 +14,11 @@ class Multinomial_7:
 		self.m_sample_size = sample_size
 		self.m_seed = seed
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, input: str):
+	def __call__(self, input=str()):
 		self.m_input = input
 
 		return (self.tensor[self.m_output])

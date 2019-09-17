@@ -12,11 +12,11 @@ class ReduceL2_1:
 		self.m_axes = axes
 		self.m_keepdims = keepdims
 
-	def output(self, reduced):
+	def output(self, reduced=str()):
 		self.m_reduced = reduced
 
 
-	def __call__(self, data: str):
+	def __call__(self, data=str()):
 		self.m_data = data
 
 		return (self.tensor[self.m_reduced])

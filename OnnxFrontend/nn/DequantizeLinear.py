@@ -8,11 +8,11 @@ class DequantizeLinear_10:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, y):
+	def output(self, y=str()):
 		self.m_y = y
 
 
-	def __call__(self, x: str, x_scale: str, x_zero_point: str):
+	def __call__(self, x=str(), x_scale=str(), x_zero_point=str()):
 		self.m_x = x
 		self.m_x_scale = x_scale
 		self.m_x_zero_point = x_zero_point

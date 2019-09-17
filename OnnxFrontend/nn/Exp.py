@@ -10,11 +10,11 @@ class Exp_1:
 		self.tensor = _tensor
 		self.m_consumed_inputs = consumed_inputs
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, input: str):
+	def __call__(self, input=str()):
 		self.m_input = input
 
 		return (self.tensor[self.m_output])
@@ -26,11 +26,11 @@ class Exp_6:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, input: str):
+	def __call__(self, input=str()):
 		self.m_input = input
 
 		return (self.tensor[self.m_output])

@@ -16,11 +16,11 @@ class MaxPool_1:
 		self.m_pads = pads
 		self.m_strides = strides
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])
@@ -42,15 +42,15 @@ class MaxPool_8:
 		self.m_storage_order = storage_order
 		self.m_strides = strides
 
-	def output(self, Y, Indices):
+	def output(self, Y=str(), Indices=str()):
 		self.m_Y = Y
 		self.m_Indices = Indices
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
-		return (self.tensor[self.m_Y, self.m_Indices])
+		return (self.tensor[self.m_Y], self.tensor[self.m_Indices])
 
 
 class MaxPool_10:
@@ -73,12 +73,12 @@ class MaxPool_10:
 		self.m_storage_order = storage_order
 		self.m_strides = strides
 
-	def output(self, Y, Indices):
+	def output(self, Y=str(), Indices=str()):
 		self.m_Y = Y
 		self.m_Indices = Indices
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
-		return (self.tensor[self.m_Y, self.m_Indices])
+		return (self.tensor[self.m_Y], self.tensor[self.m_Indices])

@@ -20,11 +20,11 @@ class ConvInteger_10:
 		self.m_pads = pads
 		self.m_strides = strides
 
-	def output(self, y):
+	def output(self, y=str()):
 		self.m_y = y
 
 
-	def __call__(self, x: str, w: str, x_zero_point: str, w_zero_point: str):
+	def __call__(self, x=str(), w=str(), x_zero_point=str(), w_zero_point=str()):
 		self.m_x = x
 		self.m_w = w
 		self.m_x_zero_point = x_zero_point

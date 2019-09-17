@@ -12,11 +12,11 @@ class Split_1:
 		self.m_axis = axis
 		self.m_split = split
 
-	def output(self, outputs):
+	def output(self, outputs=str()):
 		self.m_outputs = outputs
 
 
-	def __call__(self, input: str, split: str):
+	def __call__(self, input=str(), split=str()):
 		self.m_input = input
 		self.m_split = split
 
@@ -33,11 +33,11 @@ class Split_2:
 		self.m_axis = axis
 		self.m_split = split
 
-	def output(self, outputs):
+	def output(self, outputs=str()):
 		self.m_outputs = outputs
 
 
-	def __call__(self, input: str):
+	def __call__(self, input=str()):
 		self.m_input = input
 
 		return (self.tensor[self.m_outputs])

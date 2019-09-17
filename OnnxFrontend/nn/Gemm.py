@@ -18,11 +18,11 @@ class Gemm_1:
 		self.m_transA = transA
 		self.m_transB = transB
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, A: str, B: str, C: str):
+	def __call__(self, A=str(), B=str(), C=str()):
 		self.m_A = A
 		self.m_B = B
 		self.m_C = C
@@ -46,11 +46,11 @@ class Gemm_6:
 		self.m_transA = transA
 		self.m_transB = transB
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, A: str, B: str, C: str):
+	def __call__(self, A=str(), B=str(), C=str()):
 		self.m_A = A
 		self.m_B = B
 		self.m_C = C
@@ -72,11 +72,11 @@ class Gemm_7:
 		self.m_transA = transA
 		self.m_transB = transB
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, A: str, B: str, C: str):
+	def __call__(self, A=str(), B=str(), C=str()):
 		self.m_A = A
 		self.m_B = B
 		self.m_C = C
@@ -98,11 +98,11 @@ class Gemm_9:
 		self.m_transA = transA
 		self.m_transB = transB
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, A: str, B: str, C: str):
+	def __call__(self, A=str(), B=str(), C=str()):
 		self.m_A = A
 		self.m_B = B
 		self.m_C = C

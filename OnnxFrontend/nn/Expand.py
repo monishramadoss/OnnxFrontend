@@ -8,11 +8,11 @@ class Expand_8:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, input: str, shape: str):
+	def __call__(self, input=str(), shape=str()):
 		self.m_input = input
 		self.m_shape = shape
 

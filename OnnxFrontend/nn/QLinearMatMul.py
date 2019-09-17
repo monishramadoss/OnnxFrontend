@@ -8,11 +8,11 @@ class QLinearMatMul_10:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, y):
+	def output(self, y=str()):
 		self.m_y = y
 
 
-	def __call__(self, a: str, a_scale: str, a_zero_point: str, b: str, b_scale: str, b_zero_point: str, y_scale: str, y_zero_point: str):
+	def __call__(self, a=str(), a_scale=str(), a_zero_point=str(), b=str(), b_scale=str(), b_zero_point=str(), y_scale=str(), y_zero_point=str()):
 		self.m_a = a
 		self.m_a_scale = a_scale
 		self.m_a_zero_point = a_zero_point

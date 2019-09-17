@@ -18,7 +18,7 @@ class RandomNormal_1:
 		self.m_seed = seed
 		self.m_shape = shape
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 

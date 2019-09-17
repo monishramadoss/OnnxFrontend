@@ -10,11 +10,11 @@ class Unsqueeze_1:
 		self.tensor = _tensor
 		self.m_axes = axes
 
-	def output(self, expanded):
+	def output(self, expanded=str()):
 		self.m_expanded = expanded
 
 
-	def __call__(self, data: str):
+	def __call__(self, data=str()):
 		self.m_data = data
 
 		return (self.tensor[self.m_expanded])

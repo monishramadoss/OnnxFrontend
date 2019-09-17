@@ -12,11 +12,11 @@ class Reshape_1:
 		self.m_consumed_inputs = consumed_inputs
 		self.m_shape = shape
 
-	def output(self, reshaped):
+	def output(self, reshaped=str()):
 		self.m_reshaped = reshaped
 
 
-	def __call__(self, data: str):
+	def __call__(self, data=str()):
 		self.m_data = data
 
 		return (self.tensor[self.m_reshaped])
@@ -28,11 +28,11 @@ class Reshape_5:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, reshaped):
+	def output(self, reshaped=str()):
 		self.m_reshaped = reshaped
 
 
-	def __call__(self, data: str, shape: str):
+	def __call__(self, data=str(), shape=str()):
 		self.m_data = data
 		self.m_shape = shape
 

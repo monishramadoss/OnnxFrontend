@@ -12,11 +12,11 @@ class Xor_1:
 		self.m_axis = axis
 		self.m_broadcast = broadcast
 
-	def output(self, C):
+	def output(self, C=str()):
 		self.m_C = C
 
 
-	def __call__(self, A: str, B: str):
+	def __call__(self, A=str(), B=str()):
 		self.m_A = A
 		self.m_B = B
 
@@ -29,11 +29,11 @@ class Xor_7:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, C):
+	def output(self, C=str()):
 		self.m_C = C
 
 
-	def __call__(self, A: str, B: str):
+	def __call__(self, A=str(), B=str()):
 		self.m_A = A
 		self.m_B = B
 

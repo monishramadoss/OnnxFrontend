@@ -24,13 +24,13 @@ class LSTM_1:
 		self.m_input_forget = input_forget
 		self.m_output_sequence = output_sequence
 
-	def output(self, Y, Y_h, Y_c):
+	def output(self, Y=str(), Y_h=str(), Y_c=str()):
 		self.m_Y = Y
 		self.m_Y_h = Y_h
 		self.m_Y_c = Y_c
 
 
-	def __call__(self, X: str, W: str, R: str, B: str, sequence_lens: str, initial_h: str, initial_c: str, P: str):
+	def __call__(self, X=str(), W=str(), R=str(), B=str(), sequence_lens=str(), initial_h=str(), initial_c=str(), P=str()):
 		self.m_X = X
 		self.m_W = W
 		self.m_R = R
@@ -40,7 +40,7 @@ class LSTM_1:
 		self.m_initial_c = initial_c
 		self.m_P = P
 
-		return (self.tensor[self.m_Y, self.m_Y_h, self.m_Y_c])
+		return (self.tensor[self.m_Y], self.tensor[self.m_Y_h], self.tensor[self.m_Y_c])
 
 
 class LSTM_7:
@@ -63,13 +63,13 @@ class LSTM_7:
 		self.m_hidden_size = hidden_size
 		self.m_input_forget = input_forget
 
-	def output(self, Y, Y_h, Y_c):
+	def output(self, Y=str(), Y_h=str(), Y_c=str()):
 		self.m_Y = Y
 		self.m_Y_h = Y_h
 		self.m_Y_c = Y_c
 
 
-	def __call__(self, X: str, W: str, R: str, B: str, sequence_lens: str, initial_h: str, initial_c: str, P: str):
+	def __call__(self, X=str(), W=str(), R=str(), B=str(), sequence_lens=str(), initial_h=str(), initial_c=str(), P=str()):
 		self.m_X = X
 		self.m_W = W
 		self.m_R = R
@@ -79,4 +79,4 @@ class LSTM_7:
 		self.m_initial_c = initial_c
 		self.m_P = P
 
-		return (self.tensor[self.m_Y, self.m_Y_h, self.m_Y_c])
+		return (self.tensor[self.m_Y], self.tensor[self.m_Y_h], self.tensor[self.m_Y_c])

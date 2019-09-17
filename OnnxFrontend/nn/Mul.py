@@ -14,11 +14,11 @@ class Mul_1:
 		self.m_broadcast = broadcast
 		self.m_consumed_inputs = consumed_inputs
 
-	def output(self, C):
+	def output(self, C=str()):
 		self.m_C = C
 
 
-	def __call__(self, A: str, B: str):
+	def __call__(self, A=str(), B=str()):
 		self.m_A = A
 		self.m_B = B
 
@@ -35,11 +35,11 @@ class Mul_6:
 		self.m_axis = axis
 		self.m_broadcast = broadcast
 
-	def output(self, C):
+	def output(self, C=str()):
 		self.m_C = C
 
 
-	def __call__(self, A: str, B: str):
+	def __call__(self, A=str(), B=str()):
 		self.m_A = A
 		self.m_B = B
 
@@ -52,11 +52,11 @@ class Mul_7:
 		self.name = _name
 		self.tensor = _tensor
 
-	def output(self, C):
+	def output(self, C=str()):
 		self.m_C = C
 
 
-	def __call__(self, A: str, B: str):
+	def __call__(self, A=str(), B=str()):
 		self.m_A = A
 		self.m_B = B
 

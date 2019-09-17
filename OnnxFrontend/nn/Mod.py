@@ -10,11 +10,11 @@ class Mod_10:
 		self.tensor = _tensor
 		self.m_fmod = fmod
 
-	def output(self, C):
+	def output(self, C=str()):
 		self.m_C = C
 
 
-	def __call__(self, A: str, B: str):
+	def __call__(self, A=str(), B=str()):
 		self.m_A = A
 		self.m_B = B
 

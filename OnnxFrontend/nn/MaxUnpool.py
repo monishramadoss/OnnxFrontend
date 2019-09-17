@@ -14,11 +14,11 @@ class MaxUnpool_9:
 		self.m_pads = pads
 		self.m_strides = strides
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, X: str, I: str, output_shape: str):
+	def __call__(self, X=str(), I=str(), output_shape=str()):
 		self.m_X = X
 		self.m_I = I
 		self.m_output_shape = output_shape

@@ -30,12 +30,12 @@ class SVMClassifier_1:
 		self.m_support_vectors = support_vectors
 		self.m_vectors_per_class = vectors_per_class
 
-	def output(self, Y, Z):
+	def output(self, Y=str(), Z=str()):
 		self.m_Y = Y
 		self.m_Z = Z
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
-		return (self.tensor[self.m_Y, self.m_Z])
+		return (self.tensor[self.m_Y], self.tensor[self.m_Z])

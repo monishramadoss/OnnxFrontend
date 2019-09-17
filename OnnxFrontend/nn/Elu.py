@@ -12,11 +12,11 @@ class Elu_1:
 		self.m_alpha = alpha
 		self.m_consumed_inputs = consumed_inputs
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])
@@ -30,11 +30,11 @@ class Elu_6:
 		self.tensor = _tensor
 		self.m_alpha = alpha
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])

@@ -20,12 +20,12 @@ class LinearClassifier_1:
 		self.m_multi_class = multi_class
 		self.m_post_transform = post_transform
 
-	def output(self, Y, Z):
+	def output(self, Y=str(), Z=str()):
 		self.m_Y = Y
 		self.m_Z = Z
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
-		return (self.tensor[self.m_Y, self.m_Z])
+		return (self.tensor[self.m_Y], self.tensor[self.m_Z])

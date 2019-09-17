@@ -14,15 +14,15 @@ class Dropout_1:
 		self.m_is_test = is_test
 		self.m_ratio = ratio
 
-	def output(self, output, mask):
+	def output(self, output=str(), mask=str()):
 		self.m_output = output
 		self.m_mask = mask
 
 
-	def __call__(self, data: str):
+	def __call__(self, data=str()):
 		self.m_data = data
 
-		return (self.tensor[self.m_output, self.m_mask])
+		return (self.tensor[self.m_output], self.tensor[self.m_mask])
 
 
 class Dropout_6:
@@ -35,15 +35,15 @@ class Dropout_6:
 		self.m_is_test = is_test
 		self.m_ratio = ratio
 
-	def output(self, output, mask):
+	def output(self, output=str(), mask=str()):
 		self.m_output = output
 		self.m_mask = mask
 
 
-	def __call__(self, data: str):
+	def __call__(self, data=str()):
 		self.m_data = data
 
-		return (self.tensor[self.m_output, self.m_mask])
+		return (self.tensor[self.m_output], self.tensor[self.m_mask])
 
 
 class Dropout_7:
@@ -54,15 +54,15 @@ class Dropout_7:
 		self.tensor = _tensor
 		self.m_ratio = ratio
 
-	def output(self, output, mask):
+	def output(self, output=str(), mask=str()):
 		self.m_output = output
 		self.m_mask = mask
 
 
-	def __call__(self, data: str):
+	def __call__(self, data=str()):
 		self.m_data = data
 
-		return (self.tensor[self.m_output, self.m_mask])
+		return (self.tensor[self.m_output], self.tensor[self.m_mask])
 
 
 class Dropout_10:
@@ -73,12 +73,12 @@ class Dropout_10:
 		self.tensor = _tensor
 		self.m_ratio = ratio
 
-	def output(self, output, mask):
+	def output(self, output=str(), mask=str()):
 		self.m_output = output
 		self.m_mask = mask
 
 
-	def __call__(self, data: str):
+	def __call__(self, data=str()):
 		self.m_data = data
 
-		return (self.tensor[self.m_output, self.m_mask])
+		return (self.tensor[self.m_output], self.tensor[self.m_mask])

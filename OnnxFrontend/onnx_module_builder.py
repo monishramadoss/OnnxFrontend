@@ -98,13 +98,13 @@ def _schema(f, schema):
             file += ''.join('\n\t\tself.m_{0} = {0}'.format(i) for i,j in attributes)
 
             #output
-            file += '\n\n\tdef output(self{0}):'.format(''.join(', {0}'.format(i) for i in outputs))
+            file += '\n\n\tdef output(self{0}):'.format(''.join(', {0}=str()'.format(i) for i in outputs))
             file += '\n\t\t' + '\n\t\t'.join('self.m_{0} = {0}'.format(i) for i in outputs) + '\n'
 
             #call
-            file += '\n\n\tdef __call__(self{0}):'.format(''.join(', {0}: str'.format(i) for i in inputs))
+            file += '\n\n\tdef __call__(self{0}):'.format(''.join(', {0}=str()'.format(i) for i in inputs))
             file += '\n\t\t' + '\n\t\t'.join('self.m_{0} = {0}'.format(i) for i in inputs) + '\n'
-            file += '\n\t\treturn (self.tensor[{0}])'. format(', '.join('self.m_{0}'.format(i) for i in outputs))   
+            file += '\n\t\treturn ({0})'. format(', '.join('self.tensor[self.m_{0}]'.format(i) for i in outputs))   
         
 
             file += '\n'

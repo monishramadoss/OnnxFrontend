@@ -12,11 +12,11 @@ class InstanceNormalization_1:
 		self.m_consumed_inputs = consumed_inputs
 		self.m_epsilon = epsilon
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, input: str, scale: str, B: str):
+	def __call__(self, input=str(), scale=str(), B=str()):
 		self.m_input = input
 		self.m_scale = scale
 		self.m_B = B
@@ -32,11 +32,11 @@ class InstanceNormalization_6:
 		self.tensor = _tensor
 		self.m_epsilon = epsilon
 
-	def output(self, output):
+	def output(self, output=str()):
 		self.m_output = output
 
 
-	def __call__(self, input: str, scale: str, B: str):
+	def __call__(self, input=str(), scale=str(), B=str()):
 		self.m_input = input
 		self.m_scale = scale
 		self.m_B = B

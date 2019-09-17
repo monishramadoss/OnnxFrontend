@@ -10,11 +10,11 @@ class NonMaxSuppression_10:
 		self.tensor = _tensor
 		self.m_center_point_box = center_point_box
 
-	def output(self, selected_indices):
+	def output(self, selected_indices=str()):
 		self.m_selected_indices = selected_indices
 
 
-	def __call__(self, boxes: str, scores: str, max_output_boxes_per_class: str, iou_threshold: str, score_threshold: str):
+	def __call__(self, boxes=str(), scores=str(), max_output_boxes_per_class=str(), iou_threshold=str(), score_threshold=str()):
 		self.m_boxes = boxes
 		self.m_scores = scores
 		self.m_max_output_boxes_per_class = max_output_boxes_per_class

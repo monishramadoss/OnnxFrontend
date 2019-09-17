@@ -18,11 +18,11 @@ class LpPool_1:
 		self.m_pads = pads
 		self.m_strides = strides
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])
@@ -44,11 +44,11 @@ class LpPool_2:
 		self.m_pads = pads
 		self.m_strides = strides
 
-	def output(self, Y):
+	def output(self, Y=str()):
 		self.m_Y = Y
 
 
-	def __call__(self, X: str):
+	def __call__(self, X=str()):
 		self.m_X = X
 
 		return (self.tensor[self.m_Y])

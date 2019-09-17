@@ -22,12 +22,12 @@ class GRU_1:
 		self.m_hidden_size = hidden_size
 		self.m_output_sequence = output_sequence
 
-	def output(self, Y, Y_h):
+	def output(self, Y=str(), Y_h=str()):
 		self.m_Y = Y
 		self.m_Y_h = Y_h
 
 
-	def __call__(self, X: str, W: str, R: str, B: str, sequence_lens: str, initial_h: str):
+	def __call__(self, X=str(), W=str(), R=str(), B=str(), sequence_lens=str(), initial_h=str()):
 		self.m_X = X
 		self.m_W = W
 		self.m_R = R
@@ -35,7 +35,7 @@ class GRU_1:
 		self.m_sequence_lens = sequence_lens
 		self.m_initial_h = initial_h
 
-		return (self.tensor[self.m_Y, self.m_Y_h])
+		return (self.tensor[self.m_Y], self.tensor[self.m_Y_h])
 
 
 class GRU_3:
@@ -60,12 +60,12 @@ class GRU_3:
 		self.m_linear_before_reset = linear_before_reset
 		self.m_output_sequence = output_sequence
 
-	def output(self, Y, Y_h):
+	def output(self, Y=str(), Y_h=str()):
 		self.m_Y = Y
 		self.m_Y_h = Y_h
 
 
-	def __call__(self, X: str, W: str, R: str, B: str, sequence_lens: str, initial_h: str):
+	def __call__(self, X=str(), W=str(), R=str(), B=str(), sequence_lens=str(), initial_h=str()):
 		self.m_X = X
 		self.m_W = W
 		self.m_R = R
@@ -73,7 +73,7 @@ class GRU_3:
 		self.m_sequence_lens = sequence_lens
 		self.m_initial_h = initial_h
 
-		return (self.tensor[self.m_Y, self.m_Y_h])
+		return (self.tensor[self.m_Y], self.tensor[self.m_Y_h])
 
 
 class GRU_7:
@@ -96,12 +96,12 @@ class GRU_7:
 		self.m_hidden_size = hidden_size
 		self.m_linear_before_reset = linear_before_reset
 
-	def output(self, Y, Y_h):
+	def output(self, Y=str(), Y_h=str()):
 		self.m_Y = Y
 		self.m_Y_h = Y_h
 
 
-	def __call__(self, X: str, W: str, R: str, B: str, sequence_lens: str, initial_h: str):
+	def __call__(self, X=str(), W=str(), R=str(), B=str(), sequence_lens=str(), initial_h=str()):
 		self.m_X = X
 		self.m_W = W
 		self.m_R = R
@@ -109,4 +109,4 @@ class GRU_7:
 		self.m_sequence_lens = sequence_lens
 		self.m_initial_h = initial_h
 
-		return (self.tensor[self.m_Y, self.m_Y_h])
+		return (self.tensor[self.m_Y], self.tensor[self.m_Y_h])
