@@ -1,5 +1,5 @@
-import _onnx.onnx_module_builder
+import _onnx
+import _onnx.onnx_module_builder as omb
 
 if __name__ == '__main__':
-    _onnx.onnx_module_builder.build('c','.', True)
-
+    omb.build('c', './out', True)

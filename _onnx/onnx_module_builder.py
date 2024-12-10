@@ -1,10 +1,33 @@
-from collections import defaultdict 
+from collections import defaultdict, deque
 import numpy as np
 import shutil
 import os
 
 import onnx
 from onnx.defs import OpSchema
+from onnx.helper import get_all_tensor_dtypes, get_attribute_value, get_node_attr_value
+from onnx import (
+    IR_VERSION,
+    AttributeProto,
+    FunctionProto,
+    GraphProto,
+    MapProto,
+    ModelProto,
+    NodeProto,
+    OperatorSetIdProto,
+    OptionalProto,
+    SequenceProto,
+    SparseTensorProto,
+    TensorProto,
+    
+    TensorShapeProto,
+    TrainingInfoProto,
+    TypeProto,
+    ValueInfoProto,
+    defs,
+    mapping,
+    subbyte,
+)
 
 
 python_class_str = """
@@ -191,6 +214,7 @@ def build_python(root, regen=False):
                 initf2.write("\nfrom . import {0}\nlayer['{0}'] = {{{1}}}".format(schema[0].name, ', '.join('{1}: {0}.{0}_{1}'.format(schema[0].name, v) for v in version)))
             _python_schema(f, schema)
 
+
 def _c_type(t):
     if(t == 1):
         return "int"
@@ -221,6 +245,22 @@ def _c_type(t):
     if(t == 14):
         return "// std::vector<tensor>"
 
+def _c_tensor_values(t : TensorProto):
+    if(t.data_type == TensorProto.FLOAT):
+        return "{" + ', '.join(str(i) for i in t.float_data) + "}"
+    if(t.data_type == TensorProto.DOUBLE):
+        return "{" + ', '.join(str(i) for i in t.double_data) + "}"
+    if(t.data_type == TensorProto.INT32):
+        return "{" + ', '.join(str(i) for i in t.int32_data) + "}"
+    if(t.data_type == TensorProto.INT64):
+        return "{" + ', '.join(str(i) for i in t.int64_data) + "}"
+    if(t.data_type == TensorProto.UINT32):
+        return "{" + ', '.join(str(i) for i in t.uint32_data) + "}"
+    if(t.data_type == TensorProto.UINT64):
+        return "{" + ', '.join(str(i) for i in t.uint64_data) + "}"
+    
+    return ''
+
 def _c_schema(h, c, schema, nodes):
     header = ''
     cpp = ''
@@ -230,8 +270,9 @@ def _c_schema(h, c, schema, nodes):
         header += "\n\n/* {0} \n*/".format(n_schema.doc)
         if(n_schema.deprecated):
             continue
-
+       
         header += '\ntypedef struct {0}_{1}_inputs'.format(name, n_schema.since_version) + " {"
+        
         for i in n_schema.inputs:
             if i.option.value == 0:
                 header += "\n\ttensor {0};".format(i.name)
@@ -267,50 +308,198 @@ def _c_schema(h, c, schema, nodes):
         header += "\n}" + " {0}_{1};".format(name, n_schema.since_version)
         header += '\n\nvoid function({0}_{1} fn); '.format(name, n_schema.since_version)
         cpp += '\n\nvoid function({0}_{1} fn)'.format(name, n_schema.since_version) + " {"
-        if n_schema.has_function or n_schema.has_context_dependent_function:
-            print(name, "----")
-
-            k = 0
+        if n_schema.has_function:
+            k = 0            
+            inputs = defaultdict(str)
+            outputs = defaultdict(str)
+            attributes = defaultdict(str)
             
-            for _, i in n_schema.attributes.items():
-                cpp += '\n\t{0} {1} = fn.attributes.{1};'.format(_c_type(i.type), i.name)
-            for i in n_schema.inputs:
-                cpp += '\n\ttensor {0} = fn.inputs.{0};'.format(i.name)            
+            for input in n_schema.inputs:
+                inputs[input.name] = f'fn.inputs.{input.name}'
+            
+            for attribute in n_schema.attributes:
+                attributes[attribute] = f'fn.attributes.{attribute}'
+
+            print(name, ' ---- ')
+
+              
+            node_map = {}
+            nodes = {}
+            
+            if(len(n_schema.function_body.node) > 0):                 
+                for k, node in enumerate(n_schema.function_body.node):  
+                    try:
+                        fn_op_schema = onnx.defs.get_schema(node.op_type, n_schema.since_version)
+                    except:
+                        fn_op_schema = onnx.defs.get_schema(node.op_type)
+
+                    nodes.update(dict([(n, []) for n in node.output]))
+                    cpp += '\n\n\t{0}_{1} l{2};'.format(fn_op_schema.name,  fn_op_schema.since_version, k)
+
+                    for i, n in enumerate(node.output):
+                        for j, m in enumerate(node.input):
+                            nodes[n].append(m)
+                        for j, m in enumerate(node.attribute):
+                            nodes[n].append(m)
+                    
+                    for i, n in enumerate(fn_op_schema.inputs):
+                        if n.option.value == 0:
+                            node_map[n.name] = str
+                        elif n.option.value == 1:
+                            node_map[n.name] = int
+                        elif n.option.value == 2:
+                            node_map[n.name] = list
+
+                for k, node in enumerate(n_schema.function_body.node):
+                    try:
+                        fn_op_schema = onnx.defs.get_schema(node.op_type, n_schema.since_version)
+                    except:
+                        fn_op_schema = onnx.defs.get_schema(node.op_type)
+
+                    node = []
+                    for i, n in enumerate(fn_op_schema.inputs):
+                        if n.option.value == 0:
+                            node.append(node.input[i])
+                        elif n.option.value == 1:
+                            node.append(None)
+                        elif n.option.value == 2:
+                            node.append([j for j in node.input])
+                            break
+                    
+
+
+                # for k, node in enumerate(n_schema.function_body.node):
+                #     try:
+                #         fn_op_schema = onnx.defs.get_schema(node.op_type, n_schema.since_version)
+                #     except:
+                #         fn_op_schema = onnx.defs.get_schema(node.op_type)
+
+                #     cpp += '\n\n\t{0}_{1} l{2};'.format(fn_op_schema.name,  fn_op_schema.since_version, k)
+
+                #     schema_nodes = nodes[node.op_type + f'{k}']
+                #     for i, n in enumerate(fn_op_schema.inputs):
+                #         if isinstance(schema_nodes[n.name], list):
+                #             cpp += f'\n\tl{k}.inputs.{n.name} = ' + '{' + ', '.join([outputs[n] for n in schema_nodes[n.name]]) + '};'
+                #         else:
+                #             cpp += f'\n\tl{k}.inputs.{n.name} = {outputs[schema_nodes[n.name]]};'
+                #     # for i, n in enumerate(fn_op_schema.outputs):
+                #     #     if isinstance(schema_nodes[n.name], list):
+                #     #         cpp += f'\n\tl{k}.outputs.{n.name} = {' + ', '.join([outputs[n] for n in schema_nodes[n.name]]) + '};'
+                #     #     else:
+                #     #         cpp += f'\n\tl{k}.outputs.{n.name} = {outputs[schema_nodes[n.name]]};'
+
+                #     # for i, n in enumerate(fn_op_schema.attributes):
+                #     #     if isinstance(schema_nodes[n], list):
+                #     #         cpp += f'\n\tl{k}.attributes.{n} = {' + ', '.join([attributes[n] for n in schema_nodes[n]]) + '};'
+                #     #     else:
+                #     #         cpp += f'\n\tl{k}.attributes.{n} = {schema_nodes[n]};'
+
+
+
+
+                # for node in n_schema.function_body.node:                
+                #     try:
+                #         fn_op_schema = onnx.defs.get_schema(node.op_type, n_schema.since_version)
+                #     except:
+                #         fn_op_schema = onnx.defs.get_schema(node.op_type)
+
+                #     schema_nodes = {}
+                #     for i, n in enumerate(fn_op_schema.inputs):
+                #         if n.option.value == 0:
+                #             schema_nodes[n.name] = node.input[i]
+                #         elif n.option.value == 1:
+                #             schema_nodes[n.name] = (None, i)
+                #         elif n.option.value == 2:
+                #             schema_nodes[n.name] = [j for j in node.input]
+
+                #     for i, n in enumerate(fn_op_schema.outputs):
+                #         if n.option.value == 0:
+                #             schema_nodes[n.name] = node.output[i]  
+                #         elif n.option.value == 1:
+                #             schema_nodes[n.name] = (None, i)
+                #         elif n.option.value == 2:
+                #             schema_nodes[n.name] = [j for j in node.output]
+
+                #     for i, n in enumerate(fn_op_schema.attributes):
+                #         if len(node.attribute) > i: 
+                #             node_attribute = node.attribute[i]
+                #             if(node_attribute.ref_attr_name != ''):
+                #                 schema_nodes[n] = node_attribute.ref_attr_name
+                #             elif node_attribute.type == AttributeProto.TENSOR:
+                #                 schema_nodes[n] = _c_tensor_values(node_attribute.t)
+                #             elif node_attribute.type == AttributeProto.GRAPH:
+                #                 schema_nodes[n] = '...'
+                #             else:
+                #                 schema_nodes[n] = get_attribute_value(node_attribute)
+
+                #     # node_schema = {}
+                #     # node_schema['i'] = node.input
+                #     # node_schema['o'] = node.output
+                #     # node_schema['a'] = [a.name for a in node.attribute] + [a.ref_attr_name for a in node.attribute if a.ref_attr_name != '']
+
+
+
+                #     cpp += '\n\n\t{0}_{1} l{2};'.format(fn_op_schema.name,  fn_op_schema.since_version, k)
+                    
+                #     for i, n in enumerate(fn_op_schema.outputs):
+                #         if n.option.value == 0:    
+                #             outputs[node.output[i]] = f'l{k}.outputs.{n.name}'                           
+                #         elif n.option.value == 2:                            
+                #             outputs[node.output[i]] = '{' + ', '.join([inputs[n] for n in node.output]) + '}'    
+                #             break                         
+                #         else:
+                #             outputs[n.name] = 'nullptr'
+
+
+                #     for i, n in enumerate(fn_op_schema.inputs):
+                #         if n.option.value == 0:
+                #             if node.input[i] not in inputs and node.input[i] in outputs:
+                #                 cpp += f'\n\tl{k}.inputs.{n.name} = {outputs[node.input[i]]};'
+                #             else:
+                #                 cpp += f'\n\tl{k}.inputs.{n.name} = {inputs[node.input[i]]};'
+                #         elif n.option.value == 2:
+                #             if node.input[i] not in inputs and node.input[i] in outputs:
+                #                 cpp += f'\n\tl{k}.inputs.{n.name} = {outputs[node.input[i]]};'
+                #             else:
+                #                 cpp += f'\n\tl{k}.inputs.{n.name} = {inputs[node.input[i]]};'
+                #         else:
+                #             inputs[n.name] = 'nullptr'
+
+                #     for i, n in enumerate(fn_op_schema.attributes):
+                #         if len(node.attribute) > i: 
+                #             node_attribute = node.attribute[i]
+                #             if(node_attribute.ref_attr_name != ''):
+                #                 cpp += f'\n\tl{k}.attributes.{n} = {attributes[node_attribute.ref_attr_name]};'  
+                #             elif node_attribute.type == AttributeProto.TENSOR:
+                #                 cpp += f'\n\tl{k}.attributes.{node_attribute.name} = init({_c_tensor_values(node_attribute.t)});' 
+                #             elif node_attribute.type == AttributeProto.GRAPH:
+                #                 cpp += '...'
+                #             else:
+                #                 value = get_attribute_value(node_attribute)
+                #                 if isinstance(value, list):
+                #                     value = [str(i) for i in value]
+                #                     cpp += f'\n\tl{k}.attributes.{node_attribute.name} = ' + "{" + ",".join(value) + '};'
+                #                 else:
+                #                     cpp += f'\n\tl{k}.attributes.{node_attribute.name} = {value};'
+
+                #     k += 1
+                
+
+
+            for output in n_schema.outputs:
+                cpp += f'\n\n\tfn.outputs.{output.name} = {nodes[output.name]};'
             cpp += '\n'
-
-            for k, i in enumerate(n_schema.function_body.node):    
-                op_version = onnx.defs.get_schema(i.op_type).since_version            
-                cpp += '\n\t{0}_{1} l{2};'.format(i.op_type,  op_version, k)
-            cpp += '\n'
-            k = 0
-            if(len(n_schema.function_body.node) > 0):
-                node_0 = n_schema.function_body.node[0]
-                for i in node_0.attribute:                    
-                    cpp += '\n\tl{0}.attributes.{1} = {2};'.format(k, i.name, i.ref_attr_name)       
-                for i in node_0.input:
-                    cpp += '\n\tl{0}.inputs.{1} = {1};'.format(k, i)
-                for i in node_0.output:
-                    cpp += '\n\t{2} = l{0}.outputs.{1};'.format(k, i, i)       
-
-                for k, j in enumerate(n_schema.function_body.node[1:-1]): 
-                    for i in j.attribute:     
-                        cpp += '\n\tl{0}.attributes.{1} = {2};'.format(k, i.name, i.ref_attr_name)       
-                    for i in j.input:
-                        cpp += '\n\tl{0}.inputs.{1} = {2};'.format(k, i, i)
-                    for i in j.output:
-                        cpp += '\n\t{2} = l{0}.outputs.{1};'.format(k, i, i)       
-
-                for o in n_schema.outputs:
-                    cpp += '\n\tfn.outputs.{0} = l{1}.outputs.{2};'.format(o.name, k, o.name)
-
-                cpp += '\n'
 
             for k, i in enumerate(n_schema.function_body.node):
                 cpp += '\n\tfunction(l{0});'.format(k)
-            cpp += '\n'
 
             cpp += '\n'
-        cpp += ' }'
+
+       
+        elif n_schema.has_context_dependent_function:
+            pass
+        
+        cpp += '}'
 
     c.write(cpp.replace('...', ''))
     h.write(header.replace('...', ''))
@@ -378,17 +567,13 @@ def build_c(root, regen=False):
     nnfh.close()
 
 
-
-    
-
-
 def build(code_type, root, regen=False):
-    if not os.path.isdir(root + '/out'):
-        os.mkdir(root + '/out')
+    if not os.path.isdir(root):
+        os.mkdir(root)
     if code_type == 'python':
-        build_python(root + '/out', regen)
+        build_python(root, regen)
     elif code_type == 'c':
-        build_c(root + '/out', regen)
+        build_c(root, regen)
     else:
         raise ValueError('Unknown code type: {}'.format(code_type))
     

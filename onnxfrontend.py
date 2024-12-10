@@ -11,7 +11,7 @@ import onnx.utils
 
 import numpy as np
 import os
-import imp
+import site
 import sys
 import inspect
 
@@ -88,3 +88,30 @@ class onnx_graph:
         
         print()
 
+def get_onnx_proto():
+    """
+    Finds the ONNX directory within the site-packages and generates the ONNX protobuf files 
+    if the directory does not exist locally. Utilizes the 'onnx.gen_proto' module to perform 
+    the generation and outputs the files to a specified directory.
+    """
+    import os
+    import site
+    import subprocess
+    site_packages_dir = site.getsitepackages()[0]
+    print(site.getsitepackages())
+    onnx_dir = os.path.join(site_packages_dir, 'onnx')
+    if not os.path.exists(onnx_dir):
+        for pkg_dir in site.getsitepackages():
+            for root, dirs, files in os.walk(pkg_dir):
+                if 'onnx' in dirs:
+                    onnx_dir = os.path.join(root, 'onnx')
+                    site_packages_dir= pkg_dir
+                    break
+
+        if(not os.path.exists('./onnx')):
+            subprocess.Popen('python -m onnx.gen_proto -m -o ./onnx')
+        for root, dirs, files in os.walk('./onnx'):
+            for file in files:
+                print(root)
+                if file.endswith('.proto'):
+                    print(f'protoc --cpp_out=cpps --proto_path={root} {os.path.join(root, file)}')
